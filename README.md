@@ -1,6 +1,6 @@
 # Hi, I'm Sander Mirck 👋
 
-I'm an IT enthusiast with a strong interest in DevOps, homelabbing, self-hosting, and just troubleshooting issues. I'm currently focused on building my skills in software development and system administration with the goal of becoming a DevOps engineer. 
+I'm an IT enthusiast with a strong interest in DevOps, homelabbing, self-hosting, and just troubleshooting issues. I'm currently focused on building my skills in software development and system administration with the goal of becoming a DevOps engineer. I also really like linux, it's my favorite operating system (Kernel, but you know what i mean by operation system).
 
 
 - 🔭 I’m currently working on automating and expanding my home lab. 

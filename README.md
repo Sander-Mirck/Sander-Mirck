@@ -1,16 +1,18 @@
-## Hi there 👋
+# Hi, I'm Sander Mirck 👋
 
-<!--
-**Sander-Mirck/Sander-Mirck** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+I'm an IT enthusiast with a strong interest in DevOps, homelabbing, self-hosting, and just troubleshooting issues. I'm currently focused on building my skills in software development and system administration with the goal of becoming a DevOps engineer. 
 
-Here are some ideas to get you started:
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- 🔭 I’m currently working on automating and expanding my home lab. 
+- 🌱 I’m currently learning Ansible and git.
+- 👯 I’m looking to collaborate on open-source projects related to homelabbing and infrastructure as code.
+
+
+### My tools and Technologies
+Languages: Python, Go and Rust.
+Platforms: Docker and Kubernetes
+Cloud: My home network 😏
+Tools: Slowly working towards using git and github.
+
+### Current (low) stats
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Sander-Mirck&theme=tokyonight&show_icons=true&hide_border=true&count_private=true)

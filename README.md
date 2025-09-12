@@ -14,8 +14,3 @@ I'm an IT enthusiast with a strong interest in DevOps, homelabbing, self-hosting
 - Cloud: My home network 😏
 - Tools: Slowly working towards using git and github.
 
-### Current (low) stats
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Sander-Mirck&theme=tokyonight&show_icons=true&hide_border=true&count_private=true)
-
-### Languages
-![GitHub Stats](https://github-readme-stats.vercel.app/api/top-langs/?username=Sander-Mirck&theme=tokyonight&show_icons=true&hide_border=true&layout=compact)

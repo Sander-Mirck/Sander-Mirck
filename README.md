@@ -9,10 +9,10 @@ I'm an IT enthusiast with a strong interest in DevOps, homelabbing, self-hosting
 
 
 ### My tools and Technologies
-Languages: Python, Go and Rust.
-Platforms: Docker and Kubernetes
-Cloud: My home network 😏
-Tools: Slowly working towards using git and github.
+- Languages: Python, Go and Rust.
+- Platforms: Docker and Kubernetes
+- Cloud: My home network 😏
+- Tools: Slowly working towards using git and github.
 
 ### Current (low) stats
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Sander-Mirck&theme=tokyonight&show_icons=true&hide_border=true&count_private=true)

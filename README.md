@@ -4,7 +4,7 @@ I'm an IT enthusiast with a strong interest in DevOps, homelabbing, self-hosting
 
 
 - 🔭 I’m currently working on automating and expanding my home lab. 
-- 🌱 I’m currently learning Ansible and git.
+- 🌱 I’m currently learning Ansible.
 - 👯 I’m looking to collaborate on open-source projects related to homelabbing and infrastructure as code.
 
 
@@ -12,7 +12,7 @@ I'm an IT enthusiast with a strong interest in DevOps, homelabbing, self-hosting
 - Languages: Python, Go and Rust.
 - Platforms: Docker and Kubernetes
 - Cloud: My home network 😏
-- Tools: Slowly working towards using git and github.
+- Tools: Git, Github
 
 ---
 ## Stats

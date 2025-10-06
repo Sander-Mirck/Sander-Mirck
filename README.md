@@ -9,7 +9,7 @@ I'm an IT enthusiast with a strong interest in DevOps, homelabbing, self-hosting
 
 
 ### My tools and Technologies
-- Languages: Python, Go and Rust.
+- Languages: Python, Go, Rust and Nix.
 - Platforms: Docker and Kubernetes
 - Cloud: My home network 😏
 - Tools: Git, Github

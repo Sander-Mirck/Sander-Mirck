@@ -16,7 +16,7 @@ I'm an IT enthusiast with a strong interest in DevOps, homelabbing, self-hosting
 
 ---
 ## Stats
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Sander-Mirck&theme=default&show_icons=true&hide_border=true&count_private=true)
+<img src="https://github-readme-stats.vercel.app/api?username=Sander-Mirck&theme=default&show_icons=true&hide_border=true&count_private=true" alt="Sander-Mirck's GitHub Stats" />
 
-## Languages
-![GitHub Stats](https://github-readme-stats.vercel.app/api/top-langs/?username=Sander-Mirck&theme=default&show_icons=true&hide_border=true&layout=compact)
+## Streak
+<img src="https://streak-stats.demolab.com?user=Sander-Mirck&theme=default&hide_border=true" alt="Sander-Mirck's GitHub Stats" />

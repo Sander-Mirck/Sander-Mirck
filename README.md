@@ -2,6 +2,7 @@
 {
   user = "Sander";
   os = "NixOS";
+  role = "student";
   goals = [ "automate" "self-host" "break-fix-repeat" ];
 }
 ```

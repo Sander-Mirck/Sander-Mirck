@@ -1,22 +1,56 @@
-# Hi, I'm Sander Mirck 👋
+```nix
+{
+  user = "Sander";
+  os = "NixOS";
+  goals = [ "automate" "self-host" "break-fix-repeat" ];
+}
+```
 
-I'm an IT enthusiast with a strong interest in DevOps, homelabbing, self-hosting, and just troubleshooting issues. I'm currently focused on building my skills in software development and system administration with the goal of becoming a DevOps engineer. I also really like linux, it's my favorite operating system (Kernel, but you know what i mean by operating system). I'm recently switched from RhinoLinux to NixOS, i already love it! 
-
-
-- 🔭 I’m currently working on automating and expanding my home lab. 
-- 🌱 I’m currently learning Ansible.
-- 👯 I’m looking to collaborate on open-source projects related to homelabbing and infrastructure as code.
-
-
-### My tools and Technologies
-- Languages: Python, Go, Rust and Nix.
-- Platforms: Docker and Kubernetes
-- Cloud: My home network 😏
-- Tools: Git, Github
+<p align="center">
+  <img src="https://img.shields.io/badge/Linux-000?style=flat&logo=linux&logoColor=white"/>
+  <img src="https://img.shields.io/badge/NixOS-5277C3?style=flat&logo=nixos&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Rust-000000?style=flat&logo=rust&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white"/>
+</p>
 
 ---
-## Stats
-<img src="https://github-readme-stats.vercel.app/api?username=Sander-Mirck&theme=default&show_icons=true&hide_border=true&count_private=true" alt="Sander-Mirck's GitHub Stats" />
 
-## Streak
-<img src="https://streak-stats.demolab.com?user=Sander-Mirck&theme=default&hide_border=true" alt="Sander-Mirck's GitHub Stats" />
+### About
+
+I'm an infrastructure enthusiast focused on DevOps, Linux systems, and homelab architecture.  
+Currently running NixOS, building out my self-hosted stack, and learning Ansible.  
+I like declarative systems, reproducible configs, and tools that do one thing well.
+
+---
+
+### Stack
+
+| Area       | Tools & Tech                          |
+|------------|----------------------------------------|
+| Languages  | Python, Rust, Go, Nix                  |
+| Infra      | Docker, Kubernetes, Ansible            |
+| Platform   | NixOS (formerly RhinoLinux)            |
+| Workflow   | Git, GitHub, CLI-first, minimal UI     |
+
+---
+
+### GitHub Stats
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Sander-Mirck&theme=default&show_icons=true&hide_border=true&count_private=true" />
+  <br>
+  <img src="https://streak-stats.demolab.com?user=Sander-Mirck&theme=default&hide_border=true" />
+</p>
+
+---
+
+### Projects
+
+I build and maintain tools for:
+- Homelab automation
+- Infrastructure as Code
+- Self-hosted services
+
+Check out my [repositories](https://github.com/Sander-Mirck?tab=repositories) for more.

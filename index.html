@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sander Mirck | NixOS Enthusiast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            /* Nord Theme Colors */
+            --nord0: #2e3440; /* Polar Night */
+            --nord1: #3b4252;
+            --nord2: #434c5e;
+            --nord3: #4c566a;
+            --nord4: #d8dee9; /* Snow Storm */
+            --nord5: #e5e9f0;
+            --nord6: #eceff4;
+            --nord7: #8fbcbb; /* Frost */
+            --nord8: #88c0d0;
+            --nord9: #81a1c1;
+            --nord10: #5e81ac;
+            --nord11: #bf616a; /* Aurora */
+            --nord12: #d08770;
+            --nord13: #ebcb8b;
+            --nord14: #a3be8c;
+            --nord15: #b48ead;
+            
+            --bg-color: var(--nord0);
+            --card-bg: var(--nord1);
+            --text-color: var(--nord4);
+            --accent: var(--nord8);
+            --secondary: var(--nord9);
+            --success: var(--nord14);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--nord7);
+            text-decoration: underline;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--nord2);
+            position: sticky;
+            top: 0;
+            background: rgba(46, 52, 64, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--nord8);
+        }
+
+        .logo span { color: var(--nord13); } /* syntax highlighting style */
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--nord4);
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: var(--nord8);
+            text-decoration: none;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--nord6);
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--nord9);
+            margin-bottom: 2rem;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: var(--nord2);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            color: var(--nord14);
+            border: 1px solid var(--nord3);
+        }
+
+        .flake-anim {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+            background-image: radial-gradient(var(--nord8) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* --- Syntax Block Styling (About) --- */
+        .section {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .code-block {
+            background: var(--nord1);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--nord3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .code-block::before {
+            content: "flake.nix";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--nord8);
+            color: var(--nord0);
+            padding: 2px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .key { color: var(--nord9); }
+        .string { color: var(--nord14); }
+        .bracket { color: var(--nord15); }
+        .comment { color: var(--nord3); font-style: italic; }
+
+        /* --- Grid for Projects --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--nord1);
+            border: 1px solid var(--nord2);
+            border-radius: 6px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--nord8);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            color: var(--nord8);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .card-desc {
+            color: var(--nord4);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            background: var(--nord2);
+            color: var(--nord9);
+            border-radius: 3px;
+        }
+
+        /* --- Tech Stack (Pills) --- */
+        .tech-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .tech-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--nord2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .tech-pill:hover {
+            border-color: var(--nord8);
+            background: var(--nord3);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--nord2);
+            color: var(--nord3);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { gap: 1rem; }
+            .code-block { padding: 1.5rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            { sander<span>-</span>mirck }
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">./about</a></li>
+                <li><a href="#projects">./projects</a></li>
+                <li><a href="#contact">./contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="flake-anim"></div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Sander Mirck</h1>
+        <h2>NixOS Enthusiast & Homelabber</h2>
+        <div class="tagline">
+            <span class="key">system.state</span> = <span class="string">"ready"</span>;
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION (Styled as code) -->
+    <section id="about" class="section">
+        <div class="code-block">
+            <span class="comment"># Profile configuration</span><br>
+            {<br>
+            &nbsp;&nbsp;<span class="key">identity</span> = {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;name = <span class="string">"Sander"</span>;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;role = <span class="string">"Student & Tinkerer"</span>;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;philosophy = <span class="string">"Declarative > Imperative"</span>;<br>
+            &nbsp;&nbsp;};<br><br>
+            &nbsp;&nbsp;<span class="key">focus</span> = [<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"NixOS Flakes"</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Infrastructure as Code"</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Self-Hosting"</span><br>
+            &nbsp;&nbsp;];<br>
+            }
+        </div>
+    </section>
+
+    <!-- STACK SECTION -->
+    <section class="section">
+        <h3 style="margin-bottom:1.5rem; color:var(--nord8);">-> runtime.inputs</h3>
+        <div class="tech-container">
+            <div class="tech-pill"><i data-lucide="snowflake"></i> NixOS</div>
+            <div class="tech-pill"><i data-lucide="linux"></i> Linux</div>
+            <div class="tech-pill"><i data-lucide="container"></i> Docker</div>
+            <div class="tech-pill"><i data-lucide="ship"></i> Kubernetes</div>
+            <div class="tech-pill"><i data-lucide="code"></i> Python</div>
+            <div class="tech-pill"><i data-lucide="settings"></i> Rust</div>
+            <div class="tech-pill"><i data-lucide="terminal-square"></i> Go</div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="section">
+        <h3 style="margin-bottom:1.5rem; color:var(--nord8);">-> derivations.outputs</h3>
+        <div class="grid">
+            <!-- Project 1 -->
+            <a href="https://github.com/Sander-Mirck/dotfiles" target="_blank" class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">dotfiles</span>
+                        <i data-lucide="github" size="18"></i>
+                    </div>
+                    <p class="card-desc">
+                        My personal modular NixOS configuration powered by flakes and Home Manager. 
+                        Includes host-specific configs and reusable profiles.
+                    </p>
+                </div>
+                <div class="tags">
+                    <span class="tag">Nix</span>
+                    <span class="tag">Home Manager</span>
+                    <span class="tag">Flakes</span>
+                </div>
+            </a>
+
+            <!-- Project 2 -->
+            <a href="https://github.com/Sander-Mirck/homelab-config" target="_blank" class="card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">homelab-config</span>
+                        <i data-lucide="server" size="18"></i>
+                    </div>
+                    <p class="card-desc">
+                        General homelab configuration and orchestration. 
+                        Docker compose files and service definitions for self-hosted infrastructure.
+                    </p>
+                </div>
+                <div class="tags">
+                    <span class="tag">Docker</span>
+                    <span class="tag">YAML</span>
+                    <span class="tag">Self-Host</span>
+                </div>
+            </a>
+            
+            <!-- Placeholder for future -->
+            <div class="card" style="opacity: 0.6; border-style: dashed;">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">future-project</span>
+                        <i data-lucide="loader" size="18"></i>
+                    </div>
+                    <p class="card-desc">
+                        Currently exploring Kubernetes clusters and further automation techniques.
+                    </p>
+                </div>
+                <div class="tags">
+                    <span class="tag">WIP</span>
+                    <span class="tag">K8s</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section" style="text-align:center; margin-top: 6rem;">
+        <h2 style="color:var(--nord9); margin-bottom:1rem;">Ready to collaborate?</h2>
+        <p style="margin-bottom:2rem; color:var(--nord4);">
+            I'm always open to discussing Nix, DevOps, or cool self-hosted tech.
+        </p>
+        <a href="https://github.com/Sander-Mirck" class="tagline" style="font-size:1.1rem; text-decoration:none;">
+            <i data-lucide="github" style="vertical-align: middle; margin-right: 8px;"></i>
+            github.com/Sander-Mirck
+        </a>
+    </section>
+
+    <footer>
+        <p>exit(0); <span class="comment">// Built with 💙 & NixOS vibes</span></p>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Simple smooth scroll adjustment for sticky header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

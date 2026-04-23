@@ -3,11 +3,11 @@
 # Hi, I'm Sander 👋
 
 <p>
-  <b>NixOS enthusiast ❄️ | Automation lover 🤖 | Self-hosting addict ☁️</b>
+  <b>Debian 13 tinkerer 🐧 | Automation lover 🤖 | Recovering NixOS addict ❄️</b>
 </p>
 
 <p>
-  <i>"Declarative > Imperative. CLI > GUI."</i>
+  <i>"Declarative > Imperative. Now proving it on stable."</i>
 </p>
 
 <p>
@@ -28,6 +28,7 @@
 <div align="center">
 
 **Infrastructure & OS**<br/>
+<img src="https://img.shields.io/badge/Debian-A81D33?style=flat-square&logo=debian&logoColor=white"/>
 <img src="https://img.shields.io/badge/NixOS-5277C3?style=flat-square&logo=nixos&logoColor=white"/>
 <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black"/>
 <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
@@ -42,14 +43,14 @@
 
 ### 🌱 My Current Focus
 
-- 🏠 **Homelab Automation**
-  Building and managing a fully declarative homelab environment using **NixOS**.
+- 🐧 **Debian 13 Migration**
+  Moving my laptop from pure NixOS to Debian 13 Trixie, keeping declarative config with Ansible, home-manager, and the Nix package manager.
 
-- 🏗️ **Infrastructure as Code**
-  Exploring and implementing IaC principles to automate the break-fix-repeat cycle.
+- 🏗️ **Infrastructure as Code, distro-agnostic**
+  Testing how much of my NixOS mental model survives on stable Debian. Reproducible builds without the rebuild-everything tax.
 
 - ☁️ **Self-Hosted Services**
-  Deploying, maintaining, and hardening various open-source services.
+  Deploying, maintaining, and hardening the same open-source stack, now documented for a Debian base.
 
 <br />
 

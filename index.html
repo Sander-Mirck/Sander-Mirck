@@ -1,381 +1,326 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sander Mirck — Local LLM Tinkerer</title>
-<meta name="description" content="Dutch high school student. Local > Cloud. Running LLMs on Debian 13.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<title>SANDER'S HOMELAB!!! The #1 Local LLM Zone on the Web!!!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <style>
-:root{
-  --paper:#FAF7F2; --ink:#111; --red:#FF3B30; --blue:#0057FF; --amber:#FFB000;
-  --grid:rgba(17,17,17,0.07); --sticky:#FFF067; --tape:rgba(255,240,200,.85);
-  --trail:rgba(0,0,0,.14);
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0; color:var(--ink); background:var(--paper); font-family:"IBM Plex Mono",ui-monospace,monospace; line-height:1.6;
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size:28px 28px; overflow-x:hidden;
-}
-body::after{content:""; position:fixed; inset:0; pointer-events:none; opacity:.035; mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-a{color:var(--blue); text-decoration-thickness:2px; text-underline-offset:3px}
-a:hover{text-decoration-style:wavy}
-
-.desk{max-width:1120px; margin:0 auto; padding:64px 20px 120px; position:relative}
-
-/* lamp toggle */
-#lamp{
-  position:fixed; top:16px; right:16px; z-index:100; width:46px; height:46px; border-radius:50%;
-  background:#fffdf7; border:2px solid #111; box-shadow:3px 3px 0 #111; cursor:pointer; display:grid; place-items:center;
-  transition:transform .15s ease; color:#111;
-}
-#lamp:hover{transform:rotate(-8deg) translateY(-1px)}
-#lamp svg{width:22px; height:22px}
-
-/* scribbles */
-.scribble-ink{position:absolute; opacity:.13; pointer-events:none; z-index:0}
-.s1{top:40px; left:-20px; transform:rotate(-8deg)}
-.s2{top:520px; right:0; transform:rotate(6deg)}
-
-/* header */
-header{position:relative; margin-bottom:70px; z-index:2}
-h1{
-  font-family:"Space Grotesk", system-ui; font-weight:700; font-size:clamp(48px,13vw,132px);
-  line-height:.82; letter-spacing:-.02em; margin:0; transform:rotate(-1.4deg); filter:url(#scribble);
-  text-shadow:2px 2px 0 rgba(0,0,0,.06);
-}
-.stamp{
-  display:inline-block; margin-top:14px; padding:.35em .7em; border:3px solid var(--red); color:var(--red);
-  font-family:"Space Grotesk"; text-transform:uppercase; letter-spacing:.06em; font-weight:700;
-  transform:rotate(-3.5deg) translateX(6px); background:rgba(255,59,48,.06); mix-blend-mode:multiply;
-  box-shadow:0 0 0 4px rgba(255,59,48,.06) inset;
-}
-.sticky{
-  position:absolute; right:4%; top:-28px; background:var(--sticky); padding:14px 18px; border:1px solid #e2c84a;
-  box-shadow:4px 5px 0 rgba(0,0,0,.18), 0 8px 22px rgba(0,0,0,.08); transform:rotate(-3deg); font-weight:500; z-index:5;
-}
-.sticky::after{content:""; position:absolute; inset:0; background:repeating-linear-gradient(transparent 0 22px, rgba(0,0,0,.04) 23px); pointer-events:none}
-
-/* paper base */
-.paper{
-  background:#fffdf7; border:1px solid #e6ddd0; padding:22px 24px 26px; position:relative;
-  box-shadow:0 1px 0 #d4cbbc, 0 10px 24px rgba(0,0,0,.08); transition:transform .18s ease, box-shadow .18s ease;
-}
-.paper:hover{transform:translateY(-4px) rotate(.3deg)!important; box-shadow:0 2px 0 #d4cbbc, 0 16px 32px rgba(0,0,0,.12)}
-.tape{
-  position:absolute; width:92px; height:28px; background:var(--tape); top:-14px; left:50%; transform:translateX(-50%) rotate(-2deg);
-  box-shadow:0 1px 2px rgba(0,0,0,.15); border-left:1px solid rgba(0,0,0,.06); border-right:1px solid rgba(0,0,0,.06);
-  transition:transform .18s ease;
-}
-.paper:hover .tape{transform:translateX(-50%) rotate(7deg) translateY(-3px)}
-
-/* main sheet */
-.main-sheet{max-width:740px; transform:rotate(-1.1deg); margin-left:12px; z-index:3}
-.main-sheet h2{font-family:"Space Grotesk"; font-size:1.05rem; margin:0 0 14px; color:var(--blue)}
-.main-sheet h2::before{content:"▸ "; color:var(--red)}
-#typewriter{white-space:pre-wrap; font-size:.95rem; margin:0; min-height:150px}
-#typewriter .k{color:var(--blue)} #typewriter .s{color:#b55600} #typewriter .c{color:#6b6b6b}
-
-/* torn note */
-.torn-note{
-  max-width:560px; margin:-18px 0 48px 28%; transform:rotate(1.9deg); background:#fff6da; border:1px solid #e8d29a;
-  padding:14px 18px; box-shadow:0 6px 16px rgba(0,0,0,.06); position:relative; z-index:2;
-}
-.torn-note::before{
-  content:""; position:absolute; top:-9px; left:0; right:0; height:12px;
-  background: radial-gradient(circle at 8px 6px, transparent 6px, #fff6da 6px) 0 0/16px 12px repeat-x;
-}
-
-/* laptop sticker wall */
-.laptop-sheet{max-width:860px; margin-left:auto; transform:rotate(.7deg); margin-top:56px; z-index:2}
-.laptop-sheet h2{font-family:"Space Grotesk"; color:var(--red); margin:0 0 16px; font-size:1.05rem; text-transform:lowercase}
-.laptop{
-  background:#0e121e; border:14px solid #080a12; border-bottom-width:24px; border-radius:20px; aspect-ratio:16/9.2;
-  position:relative; box-shadow:inset 0 0 70px rgba(0,0,0,.75), 0 14px 28px rgba(0,0,0,.18); overflow:hidden;
-}
-.laptop::after{content:""; position:absolute; inset:0; background:linear-gradient(115deg, transparent 45%, rgba(255,255,255,.05) 50%, transparent 55%); mix-blend-mode:screen}
-.sticker{
-  position:absolute; background:#fff; color:#111; padding:.5em .8em; font-weight:600; border:2px solid #111; border-radius:9px;
-  box-shadow:3px 3px 0 #111; transform:rotate(var(--r)); user-select:none; font-size:.95rem; transition:transform .15s ease;
-}
-.sticker:hover{transform:rotate(var(--r)) scale(1.06) translateY(-2px); z-index:10}
-.s1{top:16%; left:6%; --r:-8deg; background:#fff1c7} .s2{top:11%; left:34%; --r:4deg}
-.s3{top:20%; right:8%; --r:7deg; background:#e7f0ff} .s4{top:48%; left:10%; --r:-4deg; background:#dcf7e7}
-.s5{top:44%; left:44%; --r:2deg; background:#ddecff} .s6{top:54%; right:12%; --r:-6deg; background:#ffe2e0}
-.s7{bottom:14%; left:20%; --r:5deg; background:#efe2ff; opacity:.95} .s8{bottom:18%; right:24%; --r:-3deg; background:#ededed}
-
-/* projects polaroids */
-.projects{display:flex; gap:34px; flex-wrap:wrap; justify-content:center; margin:72px 0 40px; z-index:2; position:relative}
-.polaroid{
-  width:280px; background:#fff; padding:14px 14px 56px; border:1px solid #e2d9c9; box-shadow:0 10px 26px rgba(0,0,0,.14);
-  transform:rotate(-4deg); position:relative; transition:transform .18s ease, box-shadow .18s ease; text-decoration:none; color:inherit;
-}
-.polaroid:nth-child(2){transform:rotate(3.5deg); margin-top:18px}
-.polaroid:hover{transform:rotate(0) translateY(-6px); box-shadow:0 18px 36px rgba(0,0,0,.18); z-index:5}
-.polaroid::before{
-  content:""; position:absolute; top:-18px; left:50%; width:100px; height:28px; background:var(--tape);
-  transform:translateX(-50%) rotate(2deg); box-shadow:0 1px 2px rgba(0,0,0,.12); transition:transform .18s ease;
-}
-.polaroid:hover::before{transform:translateX(-50%) rotate(12deg) translateY(-2px)}
-.photo{aspect-ratio:4/3; border:1px solid #111; display:grid; place-items:center; font-family:"Space Grotesk"; font-weight:700; font-size:1.4rem; color:#FAF7F2; position:relative; overflow:hidden}
-.p1 .photo{background:repeating-linear-gradient(45deg, #0039a6 0 12px, #0057FF 12px 24px)}
-.p2 .photo{background:repeating-linear-gradient(-45deg, #222 0 12px, #444 12px 24px)}
-.photo::after{content:""; position:absolute; inset:0; background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 40%)}
-.caption{position:absolute; left:16px; right:16px; bottom:12px}
-.caption h3{margin:0; font-family:"Space Grotesk"; font-size:1.15rem}
-.caption p{margin:.25rem 0 .45rem; font-size:.8rem; line-height:1.35}
-.tags{display:flex; flex-wrap:wrap; gap:6px}
-.tags span{font-size:.68rem; border:1px solid #111; padding:2px 6px; border-radius:4px; background:#fff}
-
-/* terminal */
-.terminal-wrap{max-width:720px; margin:64px auto 0; transform:rotate(-.5deg)}
-.terminal-wrap h2{font-family:"Space Grotesk"; font-size:.95rem; margin:0 0 12px; text-transform:uppercase; letter-spacing:.08em}
-.crt{
-  background:#0a0f07; color:#b8ff8a; border:3px solid #111; border-radius:14px; padding:16px; position:relative;
-  box-shadow:inset 0 0 40px rgba(0,0,0,.9), 0 0 0 4px #1c1c1c, 0 14px 30px rgba(0,0,0,.25); font-size:.9rem; cursor:text;
-}
-.crt::before{
-  content:""; position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(transparent 0 2px, rgba(120,255,120,.07) 3px); mix-blend-mode:screen; animation:flick 8s infinite linear; border-radius:11px;
-}
-@keyframes flick{0%,100%{opacity:.85} 50%{opacity:1}}
-#term-output{height:220px; overflow:auto; white-space:pre-wrap; word-break:break-word; scrollbar-width:thin}
-#term-output a{color:#7dcfff}
-.term-input-line{display:flex; gap:8px; align-items:center; margin-top:8px; border-top:1px dashed rgba(184,255,138,.25); padding-top:8px}
-.term-prompt{color:var(--amber)}
-#term-input{background:transparent; border:0; outline:0; color:inherit; font:inherit; width:100%; caret-color:#b8ff8a}
-.dim{opacity:.7} .ok{color:var(--amber)} .err{color:#ff7b72}
-
-/* contact */
-.contact-note{margin:70px 0 0 4%; max-width:560px; transform:rotate(1deg); background:#fff9b8; border:1px solid #e6d776; padding:18px 20px; box-shadow:0 8px 20px rgba(0,0,0,.07)}
-.contact-note p{margin:0 0 .6rem; font-family:"Space Grotesk"; font-size:1.08rem; line-height:1.45}
-.github-doodle{display:inline-flex; align-items:center; gap:8px; font-weight:600; color:#111; text-decoration:none; position:relative}
-.github-doodle svg{width:20px; height:20px}
-.github-doodle::after{content:""; position:absolute; left:-2px; right:-2px; bottom:-4px; height:9px; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='10' viewBox='0 0 120 10'%3E%3Cpath d='M0 7 Q20 2 40 7 T80 7 T120 7' fill='none' stroke='%230057FF' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x; opacity:.8}
-
-/* coffee stain */
-.coffee{position:absolute; bottom:-40px; right:-30px; width:240px; opacity:.16; pointer-events:none; transform:rotate(14deg); z-index:1}
-.coffee svg{display:block; width:100%; height:auto}
-
-/* footer stamp */
-footer{margin-top:90px; text-align:center}
-.stamp-foot{display:inline-block; padding:.4em .8em; border:3px solid var(--red); color:var(--red); font-family:"Space Grotesk"; font-weight:700; letter-spacing:.04em; transform:rotate(-2deg); background:rgba(255,59,48,.05); mix-blend-mode:multiply}
-
-/* graphite trail */
-.trail{position:absolute; width:7px; height:7px; border-radius:50%; background:radial-gradient(circle, var(--trail) 0%, transparent 70%); pointer-events:none; transform:translate(-50%,-50%); animation:fade .6s forwards}
-@keyframes fade{to{opacity:0; transform:translate(-50%,-50%) scale(2.4)}}
-
-/* night lab */
-body.night{
-  --paper:#0B0E14; --ink:#FFD489; --grid:rgba(255,212,137,.08); --trail:rgba(255,212,137,.22);
-  background-color:var(--paper); color:var(--ink);
-}
-body.night .paper, body.night .polaroid, body.night .torn-note, body.night .contact-note{
-  background:#121821; border-color:#1f2a3a; color:var(--ink); box-shadow:0 10px 30px rgba(0,0,0,.6);
-}
-body.night .sticky{background:#3a3006; border-color:#5a470a; color:#ffe9a6}
-body.night .stamp{color:var(--red); border-color:var(--red); mix-blend-mode:normal; background:rgba(255,59,48,.08)}
-body.night .tape{background:rgba(255,212,137,.18)}
-body.night .main-sheet h2{color:#7db3ff}
-body.night .tags span{background:#0f1522; border-color:#2a3a50; color:#ffdf9f}
-body.night #lamp{background:#121821; border-color:#2a3a50; color:#ffd489; box-shadow:3px 3px 0 #000}
-body.night .torn-note::before{background: radial-gradient(circle at 8px 6px, transparent 6px, #121821 6px) 0 0/16px 12px repeat-x}
-body.night .github-doodle{color:#ffdf9f}
-body.night .stamp-foot{mix-blend-mode:normal}
-
-/* responsive */
-@media (max-width:860px){
-  .desk{padding-top:48px}
-  .sticky{position:relative; right:auto; top:auto; margin:18px 0 0 8px; display:inline-block}
-  .main-sheet, .laptop-sheet, .torn-note, .contact-note{margin-left:0!important; margin-right:0; transform:none!important}
-  .projects{gap:24px} .polaroid, .polaroid:nth-child(2){transform:none; margin:0}
-  h1{transform:none}
-}
+  body {
+    background-color: #000000;
+    background-image: 
+      radial-gradient(white 1px, transparent 0),
+      radial-gradient(white 1px, transparent 0);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    color: #00FF00;
+    font-family: "Comic Sans MS", "Chalkboard SE", cursive;
+    margin: 0;
+    padding: 10px;
+    cursor: crosshair;
+  }
+  a:link { color: #00FFFF; text-decoration: underline; }
+  a:visited { color: #FF99FF; }
+  a:hover { color: #FFFF00; background: #FF00FF; }
+  #leftnav a:link { color: #0000FF !important; font-weight: bold; }
+  #leftnav a:visited { color: #9900CC !important; }
+  .flame {
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: 52px;
+    color: #FFFF00;
+    text-align: center;
+    letter-spacing: 3px;
+    text-shadow: 
+      0 0 4px #ffff00,
+      0 -4px 8px #ff8800,
+      0 -8px 15px #ff0000,
+      0 -12px 25px #ff0000,
+      2px 2px 0 #000;
+    animation: flicker 0.15s infinite alternate;
+    transform: scaleY(1.2);
+  }
+  @keyframes flicker {
+    0% { text-shadow: 0 0 4px #ffff00,0 -4px 8px #ff8800,0 -8px 15px #f00,0 -12px 20px #f00; }
+    50% { text-shadow: 0 0 6px #ffff00,0 -5px 10px #ff6600,0 -10px 20px #ff0000,0 -15px 30px #cc0000; }
+    100% { text-shadow: 0 0 3px #ffff00,0 -3px 7px #ffaa00,0 -7px 14px #ff0000,0 -10px 22px #ff0000; }
+  }
+  .blink { animation: blink 0.8s step-start infinite; }
+  @keyframes blink { 0%,50% {opacity:1} 51%,100% {opacity:0} }
+  .rainbow {
+    height: 8px; border: none; margin: 8px 0;
+    background: linear-gradient(to right, red, orange, yellow, #00FF00, #00FFFF, blue, #FF00FF, red);
+    border-top: 2px solid white; border-bottom: 2px solid black;
+  }
+  .counter {
+    background: #000; color: #00FF00; border: 4px inset #666; padding: 4px 8px;
+    font-family: "Courier New", monospace; font-size: 14px; letter-spacing: 2px;
+    display: inline-block;
+  }
+  .counter span {
+    background: #001a00; padding: 2px 5px; border: 1px solid #0f0;
+    color: #39FF14; text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00;
+    font-weight: bold;
+  }
+  .star { color: #FFFF00; display:inline-block; animation: twinkle 0.4s infinite alternate; font-size:16px; }
+  @keyframes twinkle { from{transform:scale(1) rotate(0deg)} to{transform:scale(1.4) rotate(20deg)} }
+  .new { background:red; color:yellow; padding:0 3px; font-size:10px; font-weight:bold; animation: blink 0.6s infinite; border:1px solid yellow; margin-right:3px; }
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .btn88 {
+    width:88px; height:31px; margin:2px;
+    background: linear-gradient(#d0d0d0, #808080);
+    border-top:2px solid #fff; border-left:2px solid #fff;
+    border-right:2px solid #404040; border-bottom:2px solid #404040;
+    font-family: "Arial", sans-serif; font-size:10px; font-weight:bold;
+    color:#0000AA; text-align:center; line-height:27px;
+    display:inline-block; box-shadow:1px 1px 0 #000;
+  }
+  .badge {
+    display:inline-block; width:88px; height:31px;
+    background: linear-gradient(#0000cc, #000066);
+    color:#FFFF00; border:2px outset #c0c0c0; font-family:Arial;
+    font-size:9px; font-weight:bold; text-align:center; line-height:11px;
+    padding-top:3px; margin:2px; vertical-align:middle;
+  }
+  marquee { font-weight: bold; }
+  hr.dotted { border:0; border-top:3px dotted #FF00FF; margin:6px 0; }
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute">
-  <filter id="scribble">
-    <feTurbulence baseFrequency="0.02" numOctaves="2" result="n"/>
-    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-</svg>
+<center>
 
-<div class="desk">
-  <button id="lamp" aria-label="Toggle night lab" title="Toggle lamp">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M12 14v4"/><path d="M10 6h4a2 2 0 0 1 2 2v3a6 6 0 0 1-12 0V8a2 2 0 0 1 2-2Z"/><path d="M5 11H3"/><path d="M19 11h2"/></svg>
-  </button>
-
-  <svg class="scribble-ink s1" width="280" height="180" viewBox="0 0 280 180" fill="none"><path d="M10 30 q60 -20 120 10 t130 5" stroke="#111" stroke-width="1.5" stroke-linecap="round"/></svg>
-  <svg class="scribble-ink s2" width="220" height="140" viewBox="0 0 220 140" fill="none"><path d="M5 90 q40 20 80 -10 t110 15" stroke="#111" stroke-width="1.2" stroke-linecap="round"/></svg>
-
-  <header>
-    <h1>SANDER MIRCK</h1>
-    <div class="stamp">LOCAL LLM TINKERER • NL • Local &gt; Cloud</div>
-    <div class="sticky">status = 'learning';</div>
-  </header>
-
-  <section class="paper main-sheet">
-    <div class="tape"></div>
-    <h2>about.nix // honest config</h2>
-    <pre id="typewriter" aria-live="polite"></pre>
-  </section>
-
-  <div class="torn-note">
-    I do not have big maintained projects. Most repos here are experiments, broken configs, and notes to my future self.
-  </div>
-
-  <section class="paper laptop-sheet">
-    <div class="tape" style="left:20%; transform:translateX(0) rotate(3deg)"></div>
-    <h2>runtime.inputs</h2>
-    <div class="laptop" aria-label="laptop lid with stickers">
-      <div class="sticker s1">🦙 ollama</div>
-      <div class="sticker s2">llama.cpp</div>
-      <div class="sticker s3">🤗 huggingface</div>
-      <div class="sticker s4">python</div>
-      <div class="sticker s5">docker</div>
-      <div class="sticker s6">debian 13</div>
-      <div class="sticker s7">nix (dabble)</div>
-      <div class="sticker s8">bash</div>
-    </div>
-  </section>
-
-  <section class="projects">
-    <a class="polaroid p1" href="https://github.com/Sander-Mirck/dotfiles" target="_blank" rel="noopener">
-      <div class="photo">~/dotfiles</div>
-      <div class="caption">
-        <h3>dotfiles</h3>
-        <p>My old NixOS flake, I don't use it anymore but I'll keep it here until I know what to do with it.</p>
-        <div class="tags"><span>Debian</span><span>Nix</span><span>Dotfiles</span></div>
+<!-- MAIN 800px TABLE -->
+<table width="800" border="5" cellspacing="0" cellpadding="0" bordercolor="#FF00FF" bgcolor="#000000" style="border-style:ridge;">
+  <!-- TOP HEADER -->
+  <tr>
+    <td colspan="3" align="center" bgcolor="#220044" style="padding:10px 5px 5px 5px; border-bottom:6px groove #00FFFF;">
+      <div class="flame">SANDER'S HOMELAB</div>
+      <marquee scrollamount="6" behavior="alternate" style="background:#000000; color:#FFFF00; border:2px dashed #00FF00; padding:3px; margin-top:6px; font-family:'Arial Black';">
+        ★ WELCOME TO MY LOCAL LLM ZONE!!! ★ FROM HOLLAND ★ LOCAL > CLOUD FOREVER!!! ★
+      </marquee>
+      <div style="margin-top:4px; font-size:12px; color:#00FFFF; background:#330000; border:1px solid red; display:inline-block; padding:2px 6px;">
+        ♫ MIDI AUTOPLAY: <i>sander_rocks.mid</i> LOADING... <span class="blink">TURN IT UP!!!</span> ♫
       </div>
-    </a>
-    <a class="polaroid p2" href="https://github.com/Sander-Mirck/homelab-config" target="_blank" rel="noopener">
-      <div class="photo">~/homelab</div>
-      <div class="caption">
-        <h3>homelab-config</h3>
-        <p>Docker compose files for my home server. Includes my local LLM stack, media services, and random experiments.</p>
-        <div class="tags"><span>Docker</span><span>Self-host</span><span>Ollama</span></div>
+    </td>
+  </tr>
+
+  <!-- COUNTERS ROW -->
+  <tr>
+    <td colspan="3" bgcolor="#000000" style="padding:4px;">
+      <table width="100%" cellpadding="2" cellspacing="0">
+        <tr>
+          <td align="left" width="33%">
+            <span style="font-size:24px;">🚧</span>
+            <b class="blink" style="color:#FF0000; background:yellow; padding:2px 6px; border:3px outset red; font-family:Impact;">UNDER CONSTRUCTION!!!</b>
+            <span style="font-size:24px;">🚧</span>
+          </td>
+          <td align="center" width="34%">
+            <div class="counter">YOU ARE VISITOR #<span>001337</span></div>
+          </td>
+          <td align="right" width="33%">
+            <table border="2" cellpadding="2" cellspacing="0" bgcolor="#FFFF00" bordercolor="#000080" style="border-style:outset;">
+              <tr><td align="center" style="font-family:Arial; font-size:10px; color:#000080; line-height:11px;">
+                <b>BEST VIEWED IN<br>NETSCAPE NAVIGATOR<br>3.0 AT 800x600</b>
+              </td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- MAIN 3 COLUMNS -->
+  <tr valign="top">
+    <!-- LEFT SIDEBAR -->
+    <td width="150" bgcolor="#00FF00" style="border-right:5px ridge #FF00FF; padding:5px;" id="leftnav">
+      <div style="background:#FF00FF; color:#FFFF00; text-align:center; font-weight:bold; border:3px outset #ff99ff; padding:3px; font-family:Impact; letter-spacing:1px; text-shadow:1px 1px 0 #000;">
+        NAVIGATION!!!
       </div>
-    </a>
-  </section>
+      <ul style="list-style:none; margin:8px 0 8px 5px; padding:0; color:#000000; font-size:14px;">
+        <li><span class="star">★</span> <a href="#home">[Home]</a></li>
+        <li><span class="star">★</span> <a href="#about">[About Me]</a></li>
+        <li><span class="star">★</span> <a href="#computer">[My Computer]</a></li>
+        <li><span class="star">★</span> <a href="#projects">[My Projects]</a></li>
+        <li><span class="star">★</span> <a href="#stack">[My Stack]</a></li>
+        <li><span class="star">★</span> <a href="#links">[Links]</a></li>
+      </ul>
+      <hr class="dotted">
+      <center>
+        <a href="#guestbook">📖<br><b>Sign My<br>Guestbook!!!</b></a>
+        <br><span class="blink" style="color:red; font-size:10px;">132 entries!</span>
+      </center>
+      <hr class="dotted">
+      <center>
+        <img src="" alt="" style="display:none">
+        <div style="width:88px;height:31px;background:#000080;color:#00FFFF;border:2px inset #fff;font-size:9px;padding-top:4px;">MADE IN<br>HOLLAND</div>
+      </center>
+    </td>
 
-  <section class="paper terminal-wrap">
-    <div class="tape" style="left:auto; right:60px; transform:rotate(-4deg)"></div>
-    <h2>local terminal</h2>
-    <div class="crt" id="crt">
-      <div id="term-output" role="log" aria-live="polite"></div>
-      <div class="term-input-line"><span class="term-prompt">sander@local&gt;</span><input id="term-input" autocomplete="off" spellcheck="false" aria-label="terminal input"></div>
+    <!-- CENTER CONTENT -->
+    <td bgcolor="#000000" style="padding:8px 10px; color:#00FF00; font-family:'Comic Sans MS'; border-left:3px dotted #00FFFF; border-right:3px dotted #00FFFF;">
+      <a name="home"></a>
+      <h1 align="center" class="blink" style="color:#FF00FF; font-size:28px; margin:5px 0; text-shadow:2px 2px 0px #00FFFF, -1px -1px 0px #FFFF00; font-family:'Comic Sans MS';">
+        Hi!!! I'm Sander!!!
+      </h1>
+
+      <p style="font-size:15px; line-height:18px;">
+        Welcome to my homepage!!! I'm a high school student from the Netherlands and I <u><b>LOVE</b></u> tinkering with <font color="#FFFF00">LOCAL LLMs</font>!!! I run everything on my home server with <font color="#00FFFF"><b>Debian 13</b></font> because <blink>CLOUD IS LAME!!!</blink> ^_^ ~*~ :P
+      </p>
+
+      <hr class="rainbow">
+
+      <a name="about"></a>
+      <center>
+      <table border="5" cellpadding="5" cellspacing="2" width="98%" bordercolor="#00FFFF" bgcolor="#000033" style="border-style:groove;">
+        <tr><td>
+          <font face="Arial Black" color="#FF00FF" size="3"><b>:: about.nix ::</b></font><br>
+          <pre style="color:#00FFFF; font-family:'Courier New', monospace; font-size:12px; margin:5px 0; line-height:14px;"><span style="color:#FF00FF;">{</span>
+  <span style="color:#FFFF00;">identity</span> = {
+    name = <span style="color:#00FF00;">"Sander Mirck"</span>;
+    from = <span style="color:#00FF00;">"Netherlands 🇳🇱"</span>;
+  };
+  <span style="color:#FFFF00;">current_focus</span> = [
+    <span style="color:#00FF00;">"Running LLMs locally with Ollama"</span>
+    <span style="color:#00FF00;">"Self-hosting on Debian 13"</span>
+    <span style="color:#00FF00;">"Automation that survives homework"</span>
+  ];
+  <span style="color:#FFFF00;">previously</span> = <span style="color:#00FF00;">"NixOS enthusiast"</span>;
+<span style="color:#FF00FF;">}</span></pre>
+        </td></tr>
+      </table>
+      </center>
+
+      <p align="center" class="blink" style="color:#FF0000; background:#FFFF00; border:4px dashed #FF0000; padding:6px; font-weight:bold; font-size:14px; margin:10px 5px; font-family:Arial;">
+        I don't have big maintained projects!!! Most repos are experiments, broken configs, and notes to my future self!!!
+      </p>
+
+      <hr class="rainbow">
+
+      <a name="computer"></a>
+      <h2 style="background:#FF00FF; color:#00FFFF; padding:3px 5px; border:3px ridge #00FFFF; margin:8px 0; font-family:Impact; letter-spacing:1px; text-shadow:1px 1px 0 #000;">MY COMPUTER!!! 💻</h2>
+      
+      <table border="3" cellpadding="4" cellspacing="0" width="100%" bordercolor="#FFFF00" bgcolor="#111111" style="font-family:'Courier New'; color:#00FF00;">
+        <tr bgcolor="#222200"><td width="30%"><b>OS:</b></td><td>Debian 13 <font color="#FF00FF">(trixie!!!)</font></td></tr>
+        <tr><td><b>CPU:</b></td><td>??? <span class="blink" style="color:yellow;">overclocked 2 much</span></td></tr>
+        <tr bgcolor="#222200"><td><b>RAM:</b></td><td>??? <font color="#00FFFF">enuf 4 llama 7b lol</font></td></tr>
+        <tr><td><b>Favorite:</b></td><td>Ollama, llama.cpp <span style="color:#FF00FF;">♥</span></td></tr>
+        <tr bgcolor="#222200"><td><b>Uptime:</b></td><td>43 days...</td></tr>
+      </table>
+
+      <hr class="dotted">
+
+      <a name="projects"></a>
+      <h2 style="background:#00AA00; color:#FFFF00; padding:3px 5px; border:3px groove yellow; margin:8px 0; font-family:'Times New Roman';">MY PROJEKTS!!!</h2>
+
+      <div style="background:#003300; border:2px dashed #00FF00; padding:6px; margin:6px 0;">
+        <font size="4">💾</font> <b><font color="#FFFF00" size="3">dotfiles</font></b> — My old NixOS flake, I don't use it anymore but I'll keep it here!!! <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;LINK: <a href="https://github.com/Sander-Mirck/dotfiles" target="_blank">https://github.com/Sander-Mirck/dotfiles</a> <span class="new">OLD!</span>
+      </div>
+
+      <div style="background:#330033; border:2px dashed #FF00FF; padding:6px; margin:6px 0;">
+        <font size="4">💾</font> <b><font color="#00FFFF" size="3">homelab-config</font></b> — Docker compose files for my home server!!! Includes my local LLM stack!!! <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;LINK: <a href="https://github.com/Sander-Mirck/homelab-config" target="_blank">https://github.com/Sander-Mirck/homelab-config</a> <span class="new">NEW!</span>
+      </div>
+
+      <hr class="rainbow">
+
+      <a name="stack"></a>
+      <h3 align="center" style="color:#FFFF00; font-family:Impact; text-shadow:2px 2px #FF0000;">MY KEWL STACK - CLICK 'EM!!!</h3>
+      <center>
+        <div class="btn88">OLLAMA</div>
+        <div class="btn88" style="color:#FF0000;">LLAMA.CPP</div>
+        <div class="btn88" style="color:#ff8800;">HUGGINGFACE</div>
+        <div class="btn88" style="color:#008800;">PYTHON</div><br>
+        <div class="btn88" style="color:#0099FF;">DOCKER</div>
+        <div class="btn88" style="color:#AA0000;">DEBIAN</div>
+        <div class="btn88" style="color:#8855ff;">NIX</div>
+        <div class="btn88" style="color:#000;">BASH</div>
+      </center>
+
+      <p align="center" style="margin-top:10px;">
+        <img src="" alt=""><span style="font-size:20px;">🔥</span> <font color="#FF00FF"><b>LOCAL &gt; CLOUD 4EVER!!!</b></font> <span style="font-size:20px;">🔥</span>
+      </p>
+
+    </td>
+
+    <!-- RIGHT SIDEBAR -->
+    <td width="120" bgcolor="#FF00FF" style="border-left:5px ridge #00FF00; padding:5px; color:#000000;" valign="top">
+      <a name="links"></a>
+      <center><b><font face="Impact" color="#FFFF00" size="4" style="text-shadow:2px 2px 0 #000;">COOL<br>LINKS!!!</font></b></center>
+      <hr style="border:2px solid yellow;">
+
+      <span class="new">NEW!</span><br>
+      <a href="https://github.com/Sander-Mirck" target="_blank" style="color:#0000AA; background:yellow; padding:1px;"><b>My GitHub</b></a>
+      <br><br>
+
+      <span class="new">HOT!</span><br>
+      <a href="https://ollama.com" target="_blank" style="color:blue;"><u>Ollama</u></a><br>
+      
+      <br>
+      <center>
+        <div style="width:80px;height:80px;background:#000033;border:3px inset #00FFFF;border-radius:50%; display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:48px; animation:spin 4s linear infinite;">🌐</div>
+        </div>
+        <font size="1" color="yellow"><b>WORLD WIDE WEB</b></font>
+      </center>
+
+      <hr style="border:2px dotted #00FF00;">
+      
+      <div style="background:#000000; color:#00FF00; border:3px inset #666; padding:4px; font-family:'Courier New'; font-size:11px;">
+        <b>♫ MIDI JUKEBOX ♫</b><br>
+        <marquee scrollamount="2" style="background:#001100; color:lime; border:1px solid #0f0;">NOW PLAYING: llama_dance.mid</marquee>
+        <center>
+        <button style="font-size:9px;">PLAY</button>
+        <button style="font-size:9px;">STOP</button>
+        </center>
+      </div>
+
+      <hr style="border:2px dotted #00FF00;">
+
+      <center>
+        <div style="background:#FFFF00; border:2px outset red; padding:3px; margin:3px;">
+          <span class="blink" style="color:red; font-weight:bold;">UNDER 18 ZONE!</span><br>
+          <font size="1">NO CLOUD ALLOWED</font>
+        </div>
+        <br>
+        <font size="5">👽</font><br>
+        <font size="1" color="#000080">aliens love local AI</font>
+      </center>
+
+    </td>
+  </tr>
+
+  <!-- WEBRING -->
+  <tr>
+    <td colspan="3" align="center" bgcolor="#330066" style="border-top:5px groove #00FF00; padding:6px;">
+      <font color="#FFFFFF" face="Arial" size="2">
+        <b>&lt;&lt; <a href="#" style="color:#00FFFF;">PREV</a> | 
+        <font color="#FFFF00" style="background:#FF0000; padding:1px 4px; border:1px solid yellow;">LOCAL AI WEBRING</font> | 
+        <a href="#" style="color:#00FFFF;">NEXT</a> &gt;&gt;</b><br>
+        <font size="1">[ This site is part of the <i>Self-Hosted Teen Webring</i> - 23 members ]</font>
+      </font>
+    </td>
+  </tr>
+</table>
+
+<!-- FOOTER -->
+<table width="800" border="3" cellpadding="4" cellspacing="0" bordercolor="#FFFF00" bgcolor="#000080" style="border-style:ridge; margin-top:8px;">
+  <tr><td align="center">
+    <a name="guestbook"></a>
+    <font color="#FFFFFF" face="Times New Roman" size="2">
+      This page last updated: <b>April 23 2026</b> ~ 9:37 PM CET<br>
+      © 1997-2026 Sander Mirck - Made with sweat, Mountain Dew, and Debian!!!<br>
+    </font>
+    <div style="margin-top:6px;">
+      <span class="badge">MADE WITH<br>NOTEPAD</span>
+      <span class="badge" style="color:#00FF00;">DEBIAN<br>13</span>
+      <span class="badge" style="background:linear-gradient(#ff0000,#880000);">NO<br>CLOUD</span>
+      <span class="badge" style="color:#00FFFF;">LOCAL LLM<br>POWERED</span>
+      <span class="badge" style="background:linear-gradient(#ff6600,#ffcc00); color:#000080;">100%<br>DUTCH</span>
     </div>
-  </section>
+    <div style="margin-top:5px; font-size:10px; color:#CCCCCC;">
+      Hit F5 to refresh!!! You have JavaScript DISABLED? GOOD!!! ~ <span class="blink">Thanks 4 visiting!!!</span>
+    </div>
+  </td></tr>
+</table>
 
-  <div class="paper contact-note">
-    <p>Want to talk? I'm always down to chat about local LLMs, homelab stuff, or why declarative configs are still better.</p>
-    <a class="github-doodle" href="https://github.com/Sander-Mirck" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .5Z"/></svg>
-      github.com/Sander-Mirck
-    </a>
-  </div>
-
-  <div class="coffee" aria-hidden="true">
-    <svg viewBox="0 0 200 200" fill="#3b2a1a"><path d="M68 22c22-8 48-2 61 15 9 12 7 27-2 39-7 9-18 14-22 25-5 13 4 26 15 33 15 9 33 8 48 1 11-5 19-15 31-17 11-2 22 4 25 15 3 11-4 22-13 28-27 18-62 14-88-3-13-8-24-20-38-27-18-9-40-8-56 3-11 8-19 20-31 27-11 6-26 7-35-2-9-9-7-24 2-32 10-9 25-10 38-14 14-4 27-13 32-27 3-9 1-19-4-27-8-13-22-21-36-26-10-3-22-5-27-15-5-11 2-25 14-28 9-2 18 1 26 4 20 7 39 16 60 8z"/></svg>
-  </div>
-
-  <footer><span class="stamp-foot">exit(0); // Built on Debian 13</span></footer>
-</div>
-
-<script>
-// lamp toggle
-const lamp = document.getElementById('lamp');
-const saved = localStorage.getItem('lab:night');
-if(saved==='1') document.body.classList.add('night');
-lamp.onclick = ()=>{ document.body.classList.toggle('night'); localStorage.setItem('lab:night', document.body.classList.contains('night')? '1':'0'); };
-
-// typewriter
-const code = `identity = { name = "Sander"; role = "Student (NL)"; philosophy = "Local > Cloud"; };
-current_focus = [ "Running LLMs locally with Ollama", "Self-hosting on Debian 13", "Automation that survives homework" ];
-previously = "NixOS enthusiast"; // still use nix shells`;
-const tw = document.getElementById('typewriter');
-let i=0;
-function highlight(t){ return t
- .replace(/identity|current_focus|previously|name|role|philosophy/g, m=>`<span class="k">${m}</span>`)
- .replace(/"([^"]*)"/g,'<span class="s">"$1"</span>')
- .replace(/\/\/.*/g, m=>`<span class="c">${m}</span>`);
-}
-function type(){
- if(i<=code.length){
-   tw.innerHTML = highlight(code.slice(0,i)) + '<span style="opacity:.6">▌</span>';
-   i++;
-   setTimeout(type, 12 + Math.random()*24);
- } else {
-   tw.innerHTML = highlight(code);
- }
-}
-setTimeout(type, 400);
-
-// graphite trail
-let last=0;
-addEventListener('pointermove', e=>{
-  const now=Date.now(); if(now-last<28) return; last=now;
-  const d=document.createElement('div'); d.className='trail';
-  d.style.left=e.clientX+'px'; d.style.top=e.clientY+window.scrollY+'px';
-  document.body.appendChild(d); setTimeout(()=>d.remove(), 600);
-});
-
-// terminal
-const out = document.getElementById('term-output');
-const inp = document.getElementById('term-input');
-const crt = document.getElementById('crt');
-crt.addEventListener('click',()=>inp.focus());
-
-const sleep = ms=>new Promise(r=>setTimeout(r,ms));
-function print(html, cls=''){ const div=document.createElement('div'); if(cls) div.className=cls; div.innerHTML=html; out.appendChild(div); out.scrollTop=out.scrollHeight; }
-
-const cmds = {
-  help: ()=> print('commands: <b>about</b>, <b>stack</b>, <b>projects</b>, <b>neofetch</b>, <b>whoami</b>, <b>clear</b>'),
-  about: ()=> { print('Sander Mirck — NL'); print('Student & local LLM tinkerer'); print('Philosophy: <span class="ok">Local > Cloud</span>'); },
-  stack: ()=> print('Ollama · llama.cpp · Hugging Face · Python · Docker · Debian 13 · Nix · Bash'),
-  projects: ()=>{ print('1) <a href="https://github.com/Sander-Mirck/dotfiles" target="_blank">dotfiles</a> — old NixOS flake'); print('2) <a href="https://github.com/Sander-Mirck/homelab-config" target="_blank">homelab-config</a> — local LLM stack'); },
-  neofetch: ()=> print(`<pre style="margin:.2rem 0;line-height:1.25">
-<span class="ok">       .--.</span>   <b>sander</b>@debian13
-<span class="ok">      |o_o |</span>  ─────────────
-<span class="ok">      |:_/ |</span>  <b>OS:</b> Debian 13 trixie
-<span class="ok">     //   \\ \\</span> <b>Host:</b> homelab (local)
-<span class="ok">    (|     | )</span><b>Uptime:</b> 173 years
-<span class="ok">   /'\\_   _/'\\</span><b>LLM:</b> llama3.1:8b (ollama)
-<span class="ok">   \\___)=(__/</span><b>Shell:</b> bash · <b>Editor:</b> helix
-</pre>`),
-  whoami: ()=> print('sander'),
-  clear: ()=> out.innerHTML='',
-  sudo: ()=> print('<span class="err">nice try. this is local.</span>')
-};
-
-async function boot(){
-  print('> ollama run llama3.1:8b', 'dim'); await sleep(500);
-  print('pulling manifest'); await sleep(350);
-  print('verifying sha256 digest'); await sleep(300);
-  print('writing manifest'); await sleep(420);
-  print('success'); await sleep(260);
-  print('<span class="ok">model loaded locally</span>'); 
-  print('type \'help\' to start'); inp.focus();
-}
-boot();
-
-inp.addEventListener('keydown', e=>{
-  if(e.key==='Enter'){
-    const v = inp.value.trim(); if(!v) return;
-    print(`<span class="dim">sander@local&gt;</span> ${v}`);
-    const cmd = v.toLowerCase().split(' ')[0];
-    (cmds[cmd]||(()=>print(`command not found: ${v}. try 'help'`, 'err')))();
-    inp.value=''; out.scrollTop=out.scrollHeight;
-  }
-});
-</script>
+</center>
 </body>
 </html>

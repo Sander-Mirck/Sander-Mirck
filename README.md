@@ -3,11 +3,11 @@
 # Hi, I'm Sander 👋
 
 <p>
-  <b>Local LLM enthusiast 🤖 | Self-hosting addict ☁️ | Automation lover | Nix dabbler ❄️</b>
+  <b>High school student | Local LLM tinkerer 🤖 | Self-hosting addict ☁️</b>
 </p>
 
 <p>
-  <i>"Local > Cloud. Declarative > Imperative. CLI > GUI."</i>
+  <i>"Learning in public. Local > Cloud."</i>
 </p>
 
 <p>
@@ -23,58 +23,45 @@
 
 <br />
 
-### 🔧 Stack
+### 👨‍💻 About me
+
+- High School student from the Netherlands. Building stuff after homework, not for a job yet
+- Main obsession right now: running LLMs locally instead of paying for APIs
+- I don't maintain big projects. Most of my repos are experiments, dotfiles, and notes to my future self
+- Former NixOS rabbit hole survivor, now on Debian 13. Still use Nix for dev shells because it just works
+
+### 🔧 Playing with
 
 <div align="center">
 
-**AI & LLMs**<br/>
-<img src="https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white"/>
-<img src="https://img.shields.io/badge/llama.cpp-000000?style=flat-square&logo=cplusplus&logoColor=white"/>
+**Right now**<br/>
+<img src="https://img.shields.io/badge/Ollama-000000?style=flat-square"/>
+<img src="https://img.shields.io/badge/llama.cpp-000000?style=flat-square"/>
 <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black"/>
-<img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white"/>
-<img src="https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white"/>
-<img src="https://img.shields.io/badge/vLLM-5C4EE5?style=flat-square&logo=v&logoColor=white"/>
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
 
-**Infra & OS**<br/>
+**Homelab base**<br/>
 <img src="https://img.shields.io/badge/Debian%2013-A81D33?style=flat-square&logo=debian&logoColor=white"/>
 <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
-<img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white"/>
 <img src="https://img.shields.io/badge/Nix-5277C3?style=flat-square&logo=nixos&logoColor=white"/>
-<img src="https://img.shields.io/badge/Proxmox-E57000?style=flat-square&logo=proxmox&logoColor=white"/>
-
-**Languages**<br/>
-<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
-<img src="https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white"/>
-<img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white"/>
-<img src="https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white"/>
 
 </div>
 
-### 🌱 Currently building
+### 🌱 Currently
 
-- 🧠 **Local LLM Homelab**
-  Self-hosting models on Debian 13 with Ollama, vLLM, and llama.cpp.
-
-- 🔗 **RAG and agents that don't suck**
-  Playing with LangChain, vector DBs, and local embeddings. Focus on reproducible pipelines, not demo notebooks.
-
-- 🏠 **Automation for AI infra**
-  Declarative deployments with Docker Compose, Ansible, and a little Nix where it still makes sense. Everything as code, everything self-hosted.
-
-- ❄️ **Nix leftovers**
-  Still use nix-shell and home-manager for dev environments. I left NixOS, I didn't forget it.
-
-<br />
+- 🧠 **Breaking local models** — trying to get decent RAG working on a single GPU without it melting
+- 🏠 **Homelab on a budget** — self-hosting everything I can on Debian, documenting what works and what doesn't
+- 📓 **Learning log** — pushing small scripts and configs instead of polished apps. School comes first, so no promises on maintenance
 
 ### 📊 GitHub
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Sander-Mirck&show_icons=true&theme=radical&hide_border=true" alt="Sander's GitHub Stats" height="180"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Sander-Mirck&layout=compact&theme=radical&hide_border=true" alt="Top Languages" height="180"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=Sander-Mirck&show_icons=true&theme=radical&hide_border=true&hide=contribs,prs" alt="Sander's GitHub Stats" height="165"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Sander-Mirck&layout=compact&theme=radical&hide_border=true" alt="Top Languages" height="165"/>
 </div>
 
 <br />
 
 <div align="center">
-  <i>Currently breaking things on Debian 13 so you don't have to.</i>
+  <sub>Don't expect releases. Expect experiments.</sub>
 </div>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sander Mirck — Local LLM Tinkerer</title>
-<meta name="description" content="17-year-old Dutch high school student. Local > Cloud. Running LLMs on Debian 13.">
+<meta name="description" content="Dutch high school student. Local > Cloud. Running LLMs on Debian 13.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -218,7 +218,7 @@ body.night .stamp-foot{mix-blend-mode:normal}
 
   <header>
     <h1>SANDER MIRCK</h1>
-    <div class="stamp">LOCAL LLM TINKERER • 17 • NL • Local &gt; Cloud</div>
+    <div class="stamp">LOCAL LLM TINKERER • NL • Local &gt; Cloud</div>
     <div class="sticky">status = 'learning';</div>
   </header>
 
@@ -298,7 +298,7 @@ if(saved==='1') document.body.classList.add('night');
 lamp.onclick = ()=>{ document.body.classList.toggle('night'); localStorage.setItem('lab:night', document.body.classList.contains('night')? '1':'0'); };
 
 // typewriter
-const code = `identity = { name = "Sander"; role = "Student (17, NL)"; philosophy = "Local > Cloud"; };
+const code = `identity = { name = "Sander"; role = "Student (NL)"; philosophy = "Local > Cloud"; };
 current_focus = [ "Running LLMs locally with Ollama", "Self-hosting on Debian 13", "Automation that survives homework" ];
 previously = "NixOS enthusiast"; // still use nix shells`;
 const tw = document.getElementById('typewriter');
@@ -339,7 +339,7 @@ function print(html, cls=''){ const div=document.createElement('div'); if(cls) d
 
 const cmds = {
   help: ()=> print('commands: <b>about</b>, <b>stack</b>, <b>projects</b>, <b>neofetch</b>, <b>whoami</b>, <b>clear</b>'),
-  about: ()=> { print('Sander Mirck — 17, NL'); print('Student & local LLM tinkerer'); print('Philosophy: <span class="ok">Local > Cloud</span>'); },
+  about: ()=> { print('Sander Mirck — NL'); print('Student & local LLM tinkerer'); print('Philosophy: <span class="ok">Local > Cloud</span>'); },
   stack: ()=> print('Ollama · llama.cpp · Hugging Face · Python · Docker · Debian 13 · Nix · Bash'),
   projects: ()=>{ print('1) <a href="https://github.com/Sander-Mirck/dotfiles" target="_blank">dotfiles</a> — old NixOS flake'); print('2) <a href="https://github.com/Sander-Mirck/homelab-config" target="_blank">homelab-config</a> — local LLM stack'); },
   neofetch: ()=> print(`<pre style="margin:.2rem 0;line-height:1.25">
@@ -347,7 +347,7 @@ const cmds = {
 <span class="ok">      |o_o |</span>  ─────────────
 <span class="ok">      |:_/ |</span>  <b>OS:</b> Debian 13 trixie
 <span class="ok">     //   \\ \\</span> <b>Host:</b> homelab (local)
-<span class="ok">    (|     | )</span><b>Uptime:</b> 17 years
+<span class="ok">    (|     | )</span><b>Uptime:</b> 173 years
 <span class="ok">   /'\\_   _/'\\</span><b>LLM:</b> llama3.1:8b (ollama)
 <span class="ok">   \\___)=(__/</span><b>Shell:</b> bash · <b>Editor:</b> helix
 </pre>`),

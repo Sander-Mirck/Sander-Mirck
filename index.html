@@ -1,326 +1,606 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>SANDER'S HOMELAB!!! The #1 Local LLM Zone on the Web!!!</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<style>
-  body {
-    background-color: #000000;
-    background-image: 
-      radial-gradient(white 1px, transparent 0),
-      radial-gradient(white 1px, transparent 0);
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px;
-    color: #00FF00;
-    font-family: "Comic Sans MS", "Chalkboard SE", cursive;
-    margin: 0;
-    padding: 10px;
-    cursor: crosshair;
-  }
-  a:link { color: #00FFFF; text-decoration: underline; }
-  a:visited { color: #FF99FF; }
-  a:hover { color: #FFFF00; background: #FF00FF; }
-  #leftnav a:link { color: #0000FF !important; font-weight: bold; }
-  #leftnav a:visited { color: #9900CC !important; }
-  .flame {
-    font-family: Impact, "Arial Black", sans-serif;
-    font-size: 52px;
-    color: #FFFF00;
-    text-align: center;
-    letter-spacing: 3px;
-    text-shadow: 
-      0 0 4px #ffff00,
-      0 -4px 8px #ff8800,
-      0 -8px 15px #ff0000,
-      0 -12px 25px #ff0000,
-      2px 2px 0 #000;
-    animation: flicker 0.15s infinite alternate;
-    transform: scaleY(1.2);
-  }
-  @keyframes flicker {
-    0% { text-shadow: 0 0 4px #ffff00,0 -4px 8px #ff8800,0 -8px 15px #f00,0 -12px 20px #f00; }
-    50% { text-shadow: 0 0 6px #ffff00,0 -5px 10px #ff6600,0 -10px 20px #ff0000,0 -15px 30px #cc0000; }
-    100% { text-shadow: 0 0 3px #ffff00,0 -3px 7px #ffaa00,0 -7px 14px #ff0000,0 -10px 22px #ff0000; }
-  }
-  .blink { animation: blink 0.8s step-start infinite; }
-  @keyframes blink { 0%,50% {opacity:1} 51%,100% {opacity:0} }
-  .rainbow {
-    height: 8px; border: none; margin: 8px 0;
-    background: linear-gradient(to right, red, orange, yellow, #00FF00, #00FFFF, blue, #FF00FF, red);
-    border-top: 2px solid white; border-bottom: 2px solid black;
-  }
-  .counter {
-    background: #000; color: #00FF00; border: 4px inset #666; padding: 4px 8px;
-    font-family: "Courier New", monospace; font-size: 14px; letter-spacing: 2px;
-    display: inline-block;
-  }
-  .counter span {
-    background: #001a00; padding: 2px 5px; border: 1px solid #0f0;
-    color: #39FF14; text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00;
-    font-weight: bold;
-  }
-  .star { color: #FFFF00; display:inline-block; animation: twinkle 0.4s infinite alternate; font-size:16px; }
-  @keyframes twinkle { from{transform:scale(1) rotate(0deg)} to{transform:scale(1.4) rotate(20deg)} }
-  .new { background:red; color:yellow; padding:0 3px; font-size:10px; font-weight:bold; animation: blink 0.6s infinite; border:1px solid yellow; margin-right:3px; }
-  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-  .btn88 {
-    width:88px; height:31px; margin:2px;
-    background: linear-gradient(#d0d0d0, #808080);
-    border-top:2px solid #fff; border-left:2px solid #fff;
-    border-right:2px solid #404040; border-bottom:2px solid #404040;
-    font-family: "Arial", sans-serif; font-size:10px; font-weight:bold;
-    color:#0000AA; text-align:center; line-height:27px;
-    display:inline-block; box-shadow:1px 1px 0 #000;
-  }
-  .badge {
-    display:inline-block; width:88px; height:31px;
-    background: linear-gradient(#0000cc, #000066);
-    color:#FFFF00; border:2px outset #c0c0c0; font-family:Arial;
-    font-size:9px; font-weight:bold; text-align:center; line-height:11px;
-    padding-top:3px; margin:2px; vertical-align:middle;
-  }
-  marquee { font-weight: bold; }
-  hr.dotted { border:0; border-top:3px dotted #FF00FF; margin:6px 0; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sander's Homelab — Local LLM Zone</title>
+    <style>
+        :root {
+            --bg: #fafaf8;
+            --surface: #ffffff;
+            --text: #2b2b28;
+            --muted: #5c5c55;
+            --accent: #8b1a2b;
+            --accent-light: #b5354a;
+            --border: #d4d4cc;
+            --code-bg: #f3f3ee;
+            --link: #8b1a2b;
+            --link-visited: #6b4040;
+            --link-hover-bg: #fdf0f2;
+            --header-bg: #f5f5f0;
+            --table-stripe: #fafaf6;
+            --tag-bg: #f0ede8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #eeede8;
+            color: var(--text);
+            font-family: "Georgia", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            font-size: 15px;
+            line-height: 1.6;
+            padding: 28px 18px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Page Container ── */
+        .page {
+            max-width: 760px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ── Header ── */
+        .site-header {
+            background: var(--header-bg);
+            border-bottom: 3px solid var(--accent);
+            padding: 26px 32px 20px 32px;
+            text-align: left;
+        }
+        .site-header .title {
+            font-family: "Helvetica Neue", "Arial", sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            color: #1a1a17;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .site-header .title .accent-dot {
+            color: var(--accent);
+        }
+        .site-header .subtitle {
+            font-family: "Courier New", "Liberation Mono", "Consolas", monospace;
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 4px;
+            letter-spacing: 0.2px;
+        }
+
+        /* ── Navigation ── */
+        .nav-bar {
+            background: #fcfcfb;
+            border-bottom: 1px solid var(--border);
+            padding: 10px 32px;
+            font-family: "Helvetica Neue", "Arial", sans-serif;
+            font-size: 13.5px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 20px;
+            align-items: center;
+        }
+        .nav-bar a {
+            color: var(--link);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            padding: 2px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.15s;
+        }
+        .nav-bar a:visited {
+            color: var(--link-visited);
+        }
+        .nav-bar a:hover {
+            border-bottom-color: var(--accent);
+            background: none;
+            color: var(--accent-light);
+        }
+        .nav-bar .sep {
+            color: #c5c5bb;
+            font-weight: 300;
+            user-select: none;
+        }
+
+        /* ── Main Content Area ── */
+        .content-area {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+        }
+
+        /* ── Main Column ── */
+        .main-col {
+            flex: 1;
+            min-width: 0;
+            padding: 28px 30px 32px 30px;
+        }
+
+        .main-col h2 {
+            font-family: "Helvetica Neue", "Arial", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a17;
+            margin: 22px 0 8px 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--border);
+            letter-spacing: 0.3px;
+        }
+        .main-col h2:first-child {
+            margin-top: 0;
+        }
+        .main-col h3 {
+            font-family: "Helvetica Neue", "Arial", sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #2b2b28;
+            margin: 16px 0 4px 0;
+        }
+        .main-col p {
+            margin: 6px 0 10px 0;
+        }
+        .main-col a {
+            color: var(--link);
+            text-decoration: underline;
+            text-decoration-color: #ccb0b5;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1.5px;
+        }
+        .main-col a:visited {
+            color: var(--link-visited);
+            text-decoration-color: #c5b0b5;
+        }
+        .main-col a:hover {
+            background: var(--link-hover-bg);
+            text-decoration-color: var(--accent);
+        }
+        .main-col ul {
+            margin: 4px 0 10px 20px;
+            list-style: square;
+        }
+        .main-col ul li {
+            margin: 3px 0;
+        }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            width: 200px;
+            flex-shrink: 0;
+            border-left: 1px solid var(--border);
+            background: #fdfdfb;
+            padding: 24px 18px 20px 18px;
+            font-family: "Helvetica Neue", "Arial", sans-serif;
+            font-size: 13px;
+            color: #3a3a35;
+        }
+        .sidebar h4 {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 0 0 8px 0;
+            padding-bottom: 4px;
+            border-bottom: 2px solid var(--border);
+        }
+        .sidebar a {
+            color: var(--link);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .sidebar a:visited {
+            color: var(--link-visited);
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+            background: none;
+        }
+        .sidebar .link-item {
+            margin: 5px 0;
+            padding: 3px 0;
+        }
+        .sidebar .tag {
+            display: inline-block;
+            background: var(--tag-bg);
+            color: #4a4a42;
+            font-size: 10.5px;
+            font-weight: 600;
+            padding: 2px 7px;
+            margin: 2px 1px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .sidebar .note-box {
+            background: #fdfaf6;
+            border: 1px solid #e5e0d8;
+            padding: 10px 12px;
+            margin: 14px 0;
+            font-size: 11.5px;
+            color: #5c5c50;
+            line-height: 1.5;
+        }
+
+        /* ── Tables ── */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0 16px 0;
+            font-size: 14px;
+        }
+        .info-table th,
+        .info-table td {
+            padding: 7px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .info-table th {
+            background: #f8f8f4;
+            font-family: "Helvetica Neue", "Arial", sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            width: 28%;
+        }
+        .info-table td {
+            font-family: "Courier New", "Liberation Mono", "Consolas", monospace;
+            font-size: 13.5px;
+            color: #2b2b28;
+        }
+        .info-table tr:nth-child(even) td {
+            background: var(--table-stripe);
+        }
+
+        /* ── Code / Config Blocks ── */
+        .config-block {
+            background: var(--code-bg);
+            border: 1px solid #e0ded6;
+            padding: 14px 18px;
+            margin: 10px 0 14px 0;
+            font-family: "Courier New", "Liberation Mono", "Consolas", monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #3a3a32;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        .config-block .key {
+            color: #8b1a2b;
+            font-weight: 600;
+        }
+        .config-block .val {
+            color: #2b5e2b;
+        }
+        .config-block .bracket {
+            color: #5c5c50;
+            font-weight: 700;
+        }
+        .config-block .comment {
+            color: #888880;
+            font-style: italic;
+        }
+
+        /* ── Footer ── */
+        .site-footer {
+            background: var(--header-bg);
+            border-top: 2px solid var(--border);
+            padding: 16px 32px;
+            font-family: "Helvetica Neue", "Arial", sans-serif;
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.7;
+        }
+        .site-footer .footer-badges {
+            margin-top: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .site-footer .footer-badge {
+            display: inline-block;
+            background: #f3f3ee;
+            border: 1px solid #d8d8d0;
+            padding: 3px 10px;
+            font-family: "Courier New", "Liberation Mono", "Consolas", monospace;
+            font-size: 10.5px;
+            letter-spacing: 0.3px;
+            color: #4a4a42;
+        }
+        .site-footer a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ── Horizontal Rules ── */
+        hr.section-rule {
+            border: 0;
+            border-top: 2px solid var(--border);
+            margin: 18px 0;
+        }
+        hr.light-rule {
+            border: 0;
+            border-top: 1px solid #e8e6de;
+            margin: 12px 0;
+        }
+
+        /* ── Misc ── */
+        .highlight-inline {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .meta-note {
+            background: #fffdf8;
+            border-left: 3px solid #d4c8a0;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 13.5px;
+            color: #5a5540;
+            font-style: italic;
+        }
+        .project-entry {
+            background: #fdfdfb;
+            border: 1px solid #e5e3da;
+            padding: 10px 14px;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .project-entry .proj-name {
+            font-weight: 700;
+            color: #1a1a17;
+            font-family: "Helvetica Neue", "Arial", sans-serif;
+        }
+        .project-entry .proj-link {
+            font-family: "Courier New", "Liberation Mono", "Consolas", monospace;
+            font-size: 12.5px;
+        }
+        .small-tag {
+            font-size: 10.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 1px 6px;
+            display: inline-block;
+            margin-left: 4px;
+        }
+        .small-tag.old {
+            background: #f0ece5;
+            color: #7a7060;
+        }
+        .small-tag.new {
+            background: #e8f0e8;
+            color: #3a6040;
+        }
+
+        @media (max-width: 680px) {
+            .content-area {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+            .main-col {
+                padding: 20px 16px;
+            }
+            .nav-bar {
+                padding: 8px 16px;
+                gap: 4px 14px;
+                font-size: 12.5px;
+            }
+            .site-header {
+                padding: 18px 16px 14px 16px;
+            }
+            .site-header .title {
+                font-size: 21px;
+            }
+        }
+    </style>
 </head>
 <body>
-<center>
 
-<!-- MAIN 800px TABLE -->
-<table width="800" border="5" cellspacing="0" cellpadding="0" bordercolor="#FF00FF" bgcolor="#000000" style="border-style:ridge;">
-  <!-- TOP HEADER -->
-  <tr>
-    <td colspan="3" align="center" bgcolor="#220044" style="padding:10px 5px 5px 5px; border-bottom:6px groove #00FFFF;">
-      <div class="flame">SANDER'S HOMELAB</div>
-      <marquee scrollamount="6" behavior="alternate" style="background:#000000; color:#FFFF00; border:2px dashed #00FF00; padding:3px; margin-top:6px; font-family:'Arial Black';">
-        ★ WELCOME TO MY LOCAL LLM ZONE!!! ★ FROM HOLLAND ★ LOCAL > CLOUD FOREVER!!! ★
-      </marquee>
-      <div style="margin-top:4px; font-size:12px; color:#00FFFF; background:#330000; border:1px solid red; display:inline-block; padding:2px 6px;">
-        ♫ MIDI AUTOPLAY: <i>sander_rocks.mid</i> LOADING... <span class="blink">TURN IT UP!!!</span> ♫
-      </div>
-    </td>
-  </tr>
+    <div class="page">
 
-  <!-- COUNTERS ROW -->
-  <tr>
-    <td colspan="3" bgcolor="#000000" style="padding:4px;">
-      <table width="100%" cellpadding="2" cellspacing="0">
-        <tr>
-          <td align="left" width="33%">
-            <span style="font-size:24px;">🚧</span>
-            <b class="blink" style="color:#FF0000; background:yellow; padding:2px 6px; border:3px outset red; font-family:Impact;">UNDER CONSTRUCTION!!!</b>
-            <span style="font-size:24px;">🚧</span>
-          </td>
-          <td align="center" width="34%">
-            <div class="counter">YOU ARE VISITOR #<span>001337</span></div>
-          </td>
-          <td align="right" width="33%">
-            <table border="2" cellpadding="2" cellspacing="0" bgcolor="#FFFF00" bordercolor="#000080" style="border-style:outset;">
-              <tr><td align="center" style="font-family:Arial; font-size:10px; color:#000080; line-height:11px;">
-                <b>BEST VIEWED IN<br>NETSCAPE NAVIGATOR<br>3.0 AT 800x600</b>
-              </td></tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
+        <!-- ── HEADER ── -->
+        <header class="site-header">
+            <h1 class="title">Sander's Homelab<span class="accent-dot">.</span></h1>
+            <p class="subtitle">Local LLM Zone &mdash; Self-hosted, Debian-powered, no cloud required.</p>
+        </header>
 
-  <!-- MAIN 3 COLUMNS -->
-  <tr valign="top">
-    <!-- LEFT SIDEBAR -->
-    <td width="150" bgcolor="#00FF00" style="border-right:5px ridge #FF00FF; padding:5px;" id="leftnav">
-      <div style="background:#FF00FF; color:#FFFF00; text-align:center; font-weight:bold; border:3px outset #ff99ff; padding:3px; font-family:Impact; letter-spacing:1px; text-shadow:1px 1px 0 #000;">
-        NAVIGATION!!!
-      </div>
-      <ul style="list-style:none; margin:8px 0 8px 5px; padding:0; color:#000000; font-size:14px;">
-        <li><span class="star">★</span> <a href="#home">[Home]</a></li>
-        <li><span class="star">★</span> <a href="#about">[About Me]</a></li>
-        <li><span class="star">★</span> <a href="#computer">[My Computer]</a></li>
-        <li><span class="star">★</span> <a href="#projects">[My Projects]</a></li>
-        <li><span class="star">★</span> <a href="#stack">[My Stack]</a></li>
-        <li><span class="star">★</span> <a href="#links">[Links]</a></li>
-      </ul>
-      <hr class="dotted">
-      <center>
-        <a href="#guestbook">📖<br><b>Sign My<br>Guestbook!!!</b></a>
-        <br><span class="blink" style="color:red; font-size:10px;">132 entries!</span>
-      </center>
-      <hr class="dotted">
-      <center>
-        <img src="" alt="" style="display:none">
-        <div style="width:88px;height:31px;background:#000080;color:#00FFFF;border:2px inset #fff;font-size:9px;padding-top:4px;">MADE IN<br>HOLLAND</div>
-      </center>
-    </td>
+        <!-- ── NAVIGATION ── -->
+        <nav class="nav-bar">
+            <a href="#home">Home</a> <span class="sep">/</span>
+            <a href="#about">About</a> <span class="sep">/</span>
+            <a href="#computer">Machine</a> <span class="sep">/</span>
+            <a href="#projects">Projects</a> <span class="sep">/</span>
+            <a href="#stack">Stack</a> <span class="sep">/</span>
+            <a href="#links">Links</a> <span class="sep">/</span>
+            <a href="#guestbook">Guestbook</a>
+        </nav>
 
-    <!-- CENTER CONTENT -->
-    <td bgcolor="#000000" style="padding:8px 10px; color:#00FF00; font-family:'Comic Sans MS'; border-left:3px dotted #00FFFF; border-right:3px dotted #00FFFF;">
-      <a name="home"></a>
-      <h1 align="center" class="blink" style="color:#FF00FF; font-size:28px; margin:5px 0; text-shadow:2px 2px 0px #00FFFF, -1px -1px 0px #FFFF00; font-family:'Comic Sans MS';">
-        Hi!!! I'm Sander!!!
-      </h1>
+        <!-- ── CONTENT AREA (Main + Sidebar) ── -->
+        <div class="content-area">
 
-      <p style="font-size:15px; line-height:18px;">
-        Welcome to my homepage!!! I'm a high school student from the Netherlands and I <u><b>LOVE</b></u> tinkering with <font color="#FFFF00">LOCAL LLMs</font>!!! I run everything on my home server with <font color="#00FFFF"><b>Debian 13</b></font> because <blink>CLOUD IS LAME!!!</blink> ^_^ ~*~ :P
-      </p>
+            <!-- ── MAIN COLUMN ── -->
+            <main class="main-col">
 
-      <hr class="rainbow">
+                <a id="home"></a>
+                <h2>Welcome</h2>
+                <p>
+                    I'm <span class="highlight-inline">Sander</span>, a high school student from the Netherlands.
+                    I run local language models on my home server using
+                    <span class="highlight-inline">Debian 13</span> (trixie).
+                    No cloud services, no subscriptions &mdash; just hardware, free software, and curiosity.
+                </p>
 
-      <a name="about"></a>
-      <center>
-      <table border="5" cellpadding="5" cellspacing="2" width="98%" bordercolor="#00FFFF" bgcolor="#000033" style="border-style:groove;">
-        <tr><td>
-          <font face="Arial Black" color="#FF00FF" size="3"><b>:: about.nix ::</b></font><br>
-          <pre style="color:#00FFFF; font-family:'Courier New', monospace; font-size:12px; margin:5px 0; line-height:14px;"><span style="color:#FF00FF;">{</span>
-  <span style="color:#FFFF00;">identity</span> = {
-    name = <span style="color:#00FF00;">"Sander Mirck"</span>;
-    from = <span style="color:#00FF00;">"Netherlands 🇳🇱"</span>;
-  };
-  <span style="color:#FFFF00;">current_focus</span> = [
-    <span style="color:#00FF00;">"Running LLMs locally with Ollama"</span>
-    <span style="color:#00FF00;">"Self-hosting on Debian 13"</span>
-    <span style="color:#00FF00;">"Automation that survives homework"</span>
-  ];
-  <span style="color:#FFFF00;">previously</span> = <span style="color:#00FF00;">"NixOS enthusiast"</span>;
-<span style="color:#FF00FF;">}</span></pre>
-        </td></tr>
-      </table>
-      </center>
+                <hr class="section-rule">
 
-      <p align="center" class="blink" style="color:#FF0000; background:#FFFF00; border:4px dashed #FF0000; padding:6px; font-weight:bold; font-size:14px; margin:10px 5px; font-family:Arial;">
-        I don't have big maintained projects!!! Most repos are experiments, broken configs, and notes to my future self!!!
-      </p>
+                <a id="about"></a>
+                <h2>About</h2>
+                <div class="config-block">
+                    <span class="bracket">{</span>
+                    <span class="key">identity</span> = {
+                    name = <span class="val">"Sander Mirck"</span>;
+                    location = <span class="val">"Netherlands"</span>;
+                    };
+                    <span class="key">current_focus</span> = [
+                    <span class="val">"Running LLMs locally with Ollama"</span>
+                    <span class="val">"Self-hosting on Debian 13"</span>
+                    <span class="val">"Automation that survives homework"</span>
+                    ];
+                    <span class="key">previously</span> = <span class="val">"NixOS enthusiast"</span>;
+                    <span class="bracket">}</span>
+                </div>
 
-      <hr class="rainbow">
+                <div class="meta-note">
+                    Most of my repositories are experiments, works-in-progress, or notes to my future self.
+                    There aren't any big maintained projects here &mdash; just a record of what I'm learning.
+                </div>
 
-      <a name="computer"></a>
-      <h2 style="background:#FF00FF; color:#00FFFF; padding:3px 5px; border:3px ridge #00FFFF; margin:8px 0; font-family:Impact; letter-spacing:1px; text-shadow:1px 1px 0 #000;">MY COMPUTER!!! 💻</h2>
-      
-      <table border="3" cellpadding="4" cellspacing="0" width="100%" bordercolor="#FFFF00" bgcolor="#111111" style="font-family:'Courier New'; color:#00FF00;">
-        <tr bgcolor="#222200"><td width="30%"><b>OS:</b></td><td>Debian 13 <font color="#FF00FF">(trixie!!!)</font></td></tr>
-        <tr><td><b>CPU:</b></td><td>??? <span class="blink" style="color:yellow;">overclocked 2 much</span></td></tr>
-        <tr bgcolor="#222200"><td><b>RAM:</b></td><td>??? <font color="#00FFFF">enuf 4 llama 7b lol</font></td></tr>
-        <tr><td><b>Favorite:</b></td><td>Ollama, llama.cpp <span style="color:#FF00FF;">♥</span></td></tr>
-        <tr bgcolor="#222200"><td><b>Uptime:</b></td><td>43 days...</td></tr>
-      </table>
+                <hr class="section-rule">
 
-      <hr class="dotted">
+                <a id="computer"></a>
+                <h2>My Machine</h2>
+                <table class="info-table">
+                    <tbody>
+                        <tr>
+                            <th>Operating System</th>
+                            <td>Debian 13 <em>(trixie)</em></td>
+                        </tr>
+                        <tr>
+                            <th>CPU</th>
+                            <td>Undisclosed &mdash; modest, but sufficient</td>
+                        </tr>
+                        <tr>
+                            <th>Memory</th>
+                            <td>Adequate for Llama 7B inference</td>
+                        </tr>
+                        <tr>
+                            <th>Preferred Tools</th>
+                            <td>Ollama, llama.cpp</td>
+                        </tr>
+                        <tr>
+                            <th>Current Uptime</th>
+                            <td>43 days</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-      <a name="projects"></a>
-      <h2 style="background:#00AA00; color:#FFFF00; padding:3px 5px; border:3px groove yellow; margin:8px 0; font-family:'Times New Roman';">MY PROJEKTS!!!</h2>
+                <hr class="light-rule">
 
-      <div style="background:#003300; border:2px dashed #00FF00; padding:6px; margin:6px 0;">
-        <font size="4">💾</font> <b><font color="#FFFF00" size="3">dotfiles</font></b> — My old NixOS flake, I don't use it anymore but I'll keep it here!!! <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;LINK: <a href="https://github.com/Sander-Mirck/dotfiles" target="_blank">https://github.com/Sander-Mirck/dotfiles</a> <span class="new">OLD!</span>
-      </div>
+                <a id="projects"></a>
+                <h2>Projects</h2>
 
-      <div style="background:#330033; border:2px dashed #FF00FF; padding:6px; margin:6px 0;">
-        <font size="4">💾</font> <b><font color="#00FFFF" size="3">homelab-config</font></b> — Docker compose files for my home server!!! Includes my local LLM stack!!! <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;LINK: <a href="https://github.com/Sander-Mirck/homelab-config" target="_blank">https://github.com/Sander-Mirck/homelab-config</a> <span class="new">NEW!</span>
-      </div>
+                <div class="project-entry">
+                    <span class="proj-name">dotfiles</span>
+                    <span class="small-tag old">Archived</span>
+                    <br>
+                    My old NixOS flake. No longer in active use, but preserved for reference.
+                    <br>
+                    <span class="proj-link">
+                        &#8594; <a href="https://github.com/Sander-Mirck/dotfiles" rel="noopener">github.com/Sander-Mirck/dotfiles</a>
+                    </span>
+                </div>
 
-      <hr class="rainbow">
+                <div class="project-entry">
+                    <span class="proj-name">homelab-config</span>
+                    <span class="small-tag new">Active</span>
+                    <br>
+                    Docker Compose files for my home server, including the local LLM stack.
+                    <br>
+                    <span class="proj-link">
+                        &#8594; <a href="https://github.com/Sander-Mirck/homelab-config" rel="noopener">github.com/Sander-Mirck/homelab-config</a>
+                    </span>
+                </div>
 
-      <a name="stack"></a>
-      <h3 align="center" style="color:#FFFF00; font-family:Impact; text-shadow:2px 2px #FF0000;">MY KEWL STACK - CLICK 'EM!!!</h3>
-      <center>
-        <div class="btn88">OLLAMA</div>
-        <div class="btn88" style="color:#FF0000;">LLAMA.CPP</div>
-        <div class="btn88" style="color:#ff8800;">HUGGINGFACE</div>
-        <div class="btn88" style="color:#008800;">PYTHON</div><br>
-        <div class="btn88" style="color:#0099FF;">DOCKER</div>
-        <div class="btn88" style="color:#AA0000;">DEBIAN</div>
-        <div class="btn88" style="color:#8855ff;">NIX</div>
-        <div class="btn88" style="color:#000;">BASH</div>
-      </center>
+                <hr class="section-rule">
 
-      <p align="center" style="margin-top:10px;">
-        <img src="" alt=""><span style="font-size:20px;">🔥</span> <font color="#FF00FF"><b>LOCAL &gt; CLOUD 4EVER!!!</b></font> <span style="font-size:20px;">🔥</span>
-      </p>
+                <a id="stack"></a>
+                <h2>Stack</h2>
+                <p>These are the tools and platforms I work with regularly:</p>
+                <p style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">
+                    <span class="tag" style="font-family:'Helvetica Neue','Arial',sans-serif;">Ollama</span>
+                    <span class="tag" style="font-family:'Helvetica Neue','Arial',sans-serif;">llama.cpp</span>
+                    <span class="tag" style="font-family:'Helvetica Neue','Arial',sans-serif;">HuggingFace</span>
+                    <span class="tag" style="font-family:'Helvetica Neue','Arial',sans-serif;">Python</span>
+                    <span class="tag" style="font-family:'Helvetica Neue','Arial',sans-serif;">Docker</span>
+                    <span class="tag" style="font-family:'Helvetica Neue','Arial',sans-serif;">Debian</span>
+                    <span class="tag" style="font-family:'Helvetica Neue','Arial',sans-serif;">Nix</span>
+                    <span class="tag" style="font-family:'Helvetica Neue','Arial',sans-serif;">Bash</span>
+                </p>
+                <p style="margin-top:12px; font-weight:600; color:var(--accent);">
+                    Local &gt; Cloud. Always.
+                </p>
 
-    </td>
+            </main>
 
-    <!-- RIGHT SIDEBAR -->
-    <td width="120" bgcolor="#FF00FF" style="border-left:5px ridge #00FF00; padding:5px; color:#000000;" valign="top">
-      <a name="links"></a>
-      <center><b><font face="Impact" color="#FFFF00" size="4" style="text-shadow:2px 2px 0 #000;">COOL<br>LINKS!!!</font></b></center>
-      <hr style="border:2px solid yellow;">
+            <!-- ── SIDEBAR ── -->
+            <aside class="sidebar">
+                <a id="links"></a>
+                <h4>Links</h4>
+                <div class="link-item">
+                    &#8594; <a href="https://github.com/Sander-Mirck" rel="noopener">My GitHub</a>
+                    <span class="small-tag new" style="font-size:9px;">Active</span>
+                </div>
+                <div class="link-item">
+                    &#8594; <a href="https://ollama.com" rel="noopener">Ollama</a>
+                </div>
+                <div class="link-item">
+                    &#8594; <a href="https://github.com/ggerganov/llama.cpp" rel="noopener">llama.cpp</a>
+                </div>
+                <div class="link-item">
+                    &#8594; <a href="https://www.debian.org" rel="noopener">Debian</a>
+                </div>
 
-      <span class="new">NEW!</span><br>
-      <a href="https://github.com/Sander-Mirck" target="_blank" style="color:#0000AA; background:yellow; padding:1px;"><b>My GitHub</b></a>
-      <br><br>
+                <hr class="light-rule">
 
-      <span class="new">HOT!</span><br>
-      <a href="https://ollama.com" target="_blank" style="color:blue;"><u>Ollama</u></a><br>
-      
-      <br>
-      <center>
-        <div style="width:80px;height:80px;background:#000033;border:3px inset #00FFFF;border-radius:50%; display:flex;align-items:center;justify-content:center;">
-          <div style="font-size:48px; animation:spin 4s linear infinite;">🌐</div>
+                <h4>About This Site</h4>
+                <div class="note-box">
+                    Hand-edited HTML. No JavaScript, no frameworks, no trackers.
+                    Built on a Debian machine with a text editor.
+                    This site is part of the <em>Self-Hosted Teen Webring</em> &mdash; 23 members.
+                </div>
+
+                <div style="margin-top:10px; font-size:11px; color:var(--muted);">
+                    <strong>Location:</strong> Netherlands<br>
+                    <strong>Focus:</strong> Local AI inference<br>
+                    <strong>Established:</strong> 2024
+                </div>
+            </aside>
+
         </div>
-        <font size="1" color="yellow"><b>WORLD WIDE WEB</b></font>
-      </center>
 
-      <hr style="border:2px dotted #00FF00;">
-      
-      <div style="background:#000000; color:#00FF00; border:3px inset #666; padding:4px; font-family:'Courier New'; font-size:11px;">
-        <b>♫ MIDI JUKEBOX ♫</b><br>
-        <marquee scrollamount="2" style="background:#001100; color:lime; border:1px solid #0f0;">NOW PLAYING: llama_dance.mid</marquee>
-        <center>
-        <button style="font-size:9px;">PLAY</button>
-        <button style="font-size:9px;">STOP</button>
-        </center>
-      </div>
+        <!-- ── FOOTER ── -->
+        <footer class="site-footer">
+            <a id="guestbook"></a>
+            <p>
+                Last updated: <strong>23 April 2026</strong> &mdash; 21:37 CET<br>
+                &copy; 2024&ndash;2026 Sander Mirck &mdash; Built with focus, free software, and Debian.
+            </p>
+            <div class="footer-badges">
+                <span class="footer-badge">Debian 13</span>
+                <span class="footer-badge">No Cloud</span>
+                <span class="footer-badge">Local LLM Powered</span>
+                <span class="footer-badge">100% Dutch</span>
+                <span class="footer-badge">Hand-Coded HTML</span>
+            </div>
+            <p style="margin-top:8px;">
+                <a href="#guestbook">&#9998; Sign the guestbook</a> &mdash; 132 entries so far.
+            </p>
+        </footer>
 
-      <hr style="border:2px dotted #00FF00;">
-
-      <center>
-        <div style="background:#FFFF00; border:2px outset red; padding:3px; margin:3px;">
-          <span class="blink" style="color:red; font-weight:bold;">UNDER 18 ZONE!</span><br>
-          <font size="1">NO CLOUD ALLOWED</font>
-        </div>
-        <br>
-        <font size="5">👽</font><br>
-        <font size="1" color="#000080">aliens love local AI</font>
-      </center>
-
-    </td>
-  </tr>
-
-  <!-- WEBRING -->
-  <tr>
-    <td colspan="3" align="center" bgcolor="#330066" style="border-top:5px groove #00FF00; padding:6px;">
-      <font color="#FFFFFF" face="Arial" size="2">
-        <b>&lt;&lt; <a href="#" style="color:#00FFFF;">PREV</a> | 
-        <font color="#FFFF00" style="background:#FF0000; padding:1px 4px; border:1px solid yellow;">LOCAL AI WEBRING</font> | 
-        <a href="#" style="color:#00FFFF;">NEXT</a> &gt;&gt;</b><br>
-        <font size="1">[ This site is part of the <i>Self-Hosted Teen Webring</i> - 23 members ]</font>
-      </font>
-    </td>
-  </tr>
-</table>
-
-<!-- FOOTER -->
-<table width="800" border="3" cellpadding="4" cellspacing="0" bordercolor="#FFFF00" bgcolor="#000080" style="border-style:ridge; margin-top:8px;">
-  <tr><td align="center">
-    <a name="guestbook"></a>
-    <font color="#FFFFFF" face="Times New Roman" size="2">
-      This page last updated: <b>April 23 2026</b> ~ 9:37 PM CET<br>
-      © 1997-2026 Sander Mirck - Made with sweat, Mountain Dew, and Debian!!!<br>
-    </font>
-    <div style="margin-top:6px;">
-      <span class="badge">MADE WITH<br>NOTEPAD</span>
-      <span class="badge" style="color:#00FF00;">DEBIAN<br>13</span>
-      <span class="badge" style="background:linear-gradient(#ff0000,#880000);">NO<br>CLOUD</span>
-      <span class="badge" style="color:#00FFFF;">LOCAL LLM<br>POWERED</span>
-      <span class="badge" style="background:linear-gradient(#ff6600,#ffcc00); color:#000080;">100%<br>DUTCH</span>
     </div>
-    <div style="margin-top:5px; font-size:10px; color:#CCCCCC;">
-      Hit F5 to refresh!!! You have JavaScript DISABLED? GOOD!!! ~ <span class="blink">Thanks 4 visiting!!!</span>
-    </div>
-  </td></tr>
-</table>
 
-</center>
 </body>
 </html>

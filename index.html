@@ -38,7 +38,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ── Page Container ── */
         .page {
             max-width: 760px;
             margin: 0 auto;
@@ -47,7 +46,6 @@
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
         }
 
-        /* ── Header ── */
         .site-header {
             background: var(--header-bg);
             border-bottom: 3px solid var(--accent);
@@ -74,7 +72,6 @@
             letter-spacing: 0.2px;
         }
 
-        /* ── Navigation ── */
         .nav-bar {
             background: #fcfcfb;
             border-bottom: 1px solid var(--border);
@@ -109,14 +106,12 @@
             user-select: none;
         }
 
-        /* ── Main Content Area ── */
         .content-area {
             display: flex;
             flex-direction: row;
             gap: 0;
         }
 
-        /* ── Main Column ── */
         .main-col {
             flex: 1;
             min-width: 0;
@@ -169,7 +164,6 @@
             margin: 3px 0;
         }
 
-        /* ── Sidebar ── */
         .sidebar {
             width: 200px;
             flex-shrink: 0;
@@ -227,7 +221,6 @@
             line-height: 1.5;
         }
 
-        /* ── Tables ── */
         .info-table {
             width: 100%;
             border-collapse: collapse;
@@ -259,7 +252,6 @@
             background: var(--table-stripe);
         }
 
-        /* ── Code / Config Blocks ── */
         .config-block {
             background: var(--code-bg);
             border: 1px solid #e0ded6;
@@ -283,12 +275,7 @@
             color: #5c5c50;
             font-weight: 700;
         }
-        .config-block .comment {
-            color: #888880;
-            font-style: italic;
-        }
 
-        /* ── Footer ── */
         .site-footer {
             background: var(--header-bg);
             border-top: 2px solid var(--border);
@@ -322,7 +309,6 @@
             text-underline-offset: 2px;
         }
 
-        /* ── Horizontal Rules ── */
         hr.section-rule {
             border: 0;
             border-top: 2px solid var(--border);
@@ -334,7 +320,6 @@
             margin: 12px 0;
         }
 
-        /* ── Misc ── */
         .highlight-inline {
             color: var(--accent);
             font-weight: 600;
@@ -412,36 +397,30 @@
 
     <div class="page">
 
-        <!-- ── HEADER ── -->
         <header class="site-header">
             <h1 class="title">Sander's Homelab<span class="accent-dot">.</span></h1>
-            <p class="subtitle">Local LLM Zone &mdash; Self-hosted, Debian-powered, no cloud required.</p>
         </header>
 
-        <!-- ── NAVIGATION ── -->
         <nav class="nav-bar">
             <a href="#home">Home</a> <span class="sep">/</span>
             <a href="#about">About</a> <span class="sep">/</span>
             <a href="#computer">Machine</a> <span class="sep">/</span>
             <a href="#projects">Projects</a> <span class="sep">/</span>
             <a href="#stack">Stack</a> <span class="sep">/</span>
-            <a href="#links">Links</a> <span class="sep">/</span>
-            <a href="#guestbook">Guestbook</a>
+            <a href="#links">Links</a>
         </nav>
 
-        <!-- ── CONTENT AREA (Main + Sidebar) ── -->
         <div class="content-area">
 
-            <!-- ── MAIN COLUMN ── -->
             <main class="main-col">
 
                 <a id="home"></a>
                 <h2>Welcome</h2>
                 <p>
-                    I'm <span class="highlight-inline">Sander</span>, a high school student from the Netherlands.
+                    I'm <span class="highlight-inline">Sander</span>, from the Netherlands.
                     I run local language models on my home server using
                     <span class="highlight-inline">Debian 13</span> (trixie).
-                    No cloud services, no subscriptions &mdash; just hardware, free software, and curiosity.
+                    No cloud services, no subscriptions &mdash; just hardware and free software.
                 </p>
 
                 <hr class="section-rule">
@@ -457,7 +436,6 @@
                     <span class="key">current_focus</span> = [
                     <span class="val">"Running LLMs locally with Ollama"</span>
                     <span class="val">"Self-hosting on Debian 13"</span>
-                    <span class="val">"Automation that survives homework"</span>
                     ];
                     <span class="key">previously</span> = <span class="val">"NixOS enthusiast"</span>;
                     <span class="bracket">}</span>
@@ -465,7 +443,7 @@
 
                 <div class="meta-note">
                     Most of my repositories are experiments, works-in-progress, or notes to my future self.
-                    There aren't any big maintained projects here &mdash; just a record of what I'm learning.
+                    I don't have time for large, maintained projects.
                 </div>
 
                 <hr class="section-rule">
@@ -480,11 +458,11 @@
                         </tr>
                         <tr>
                             <th>CPU</th>
-                            <td>Undisclosed &mdash; modest, but sufficient</td>
+                            <td>I forgot lol</td>
                         </tr>
                         <tr>
                             <th>Memory</th>
-                            <td>Adequate for Llama 7B inference</td>
+                            <td>16GB</td>
                         </tr>
                         <tr>
                             <th>Preferred Tools</th>
@@ -492,7 +470,7 @@
                         </tr>
                         <tr>
                             <th>Current Uptime</th>
-                            <td>43 days</td>
+                            <td>43 days (joke btw)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -545,7 +523,6 @@
 
             </main>
 
-            <!-- ── SIDEBAR ── -->
             <aside class="sidebar">
                 <a id="links"></a>
                 <h4>Links</h4>
@@ -569,21 +546,18 @@
                 <div class="note-box">
                     Hand-edited HTML. No JavaScript, no frameworks, no trackers.
                     Built on a Debian machine with a text editor.
-                    This site is part of the <em>Self-Hosted Teen Webring</em> &mdash; 23 members.
                 </div>
 
                 <div style="margin-top:10px; font-size:11px; color:var(--muted);">
                     <strong>Location:</strong> Netherlands<br>
                     <strong>Focus:</strong> Local AI inference<br>
-                    <strong>Established:</strong> 2024
+                    <strong>Established:</strong> 2026
                 </div>
             </aside>
 
         </div>
 
-        <!-- ── FOOTER ── -->
         <footer class="site-footer">
-            <a id="guestbook"></a>
             <p>
                 Last updated: <strong>23 April 2026</strong> &mdash; 21:37 CET<br>
                 &copy; 2024&ndash;2026 Sander Mirck &mdash; Built with focus, free software, and Debian.
@@ -595,9 +569,6 @@
                 <span class="footer-badge">100% Dutch</span>
                 <span class="footer-badge">Hand-Coded HTML</span>
             </div>
-            <p style="margin-top:8px;">
-                <a href="#guestbook">&#9998; Sign the guestbook</a> &mdash; 132 entries so far.
-            </p>
         </footer>
 
     </div>
